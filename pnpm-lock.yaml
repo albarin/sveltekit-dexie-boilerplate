@@ -11,6 +11,12 @@ dependencies:
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  dexie:
+    specifier: ^4.0.4
+    version: 4.0.4
+  dexie-cloud-addon:
+    specifier: ^4.0.5
+    version: 4.0.5(dexie@4.0.4)
   lucide-svelte:
     specifier: ^0.378.0
     version: 0.378.0(svelte@5.0.0-next.123)
@@ -1201,6 +1207,25 @@ packages:
     resolution: {integrity: sha512-gO+/OMXF7488D+u3ue+G7Y4AA3ZmUnB3eHJXmBTgNHvr4ZNzl36A0ZtG+XCRNYCkYx/bFmw4qtkoFLa+wSrwAA==}
     dev: true
 
+  /dexie-cloud-addon@4.0.5(dexie@4.0.4):
+    resolution: {integrity: sha512-TIrMZVCiOO4kZgCixA/ReSCwZjurlxhrUHVviX4RO+50B+TQalIAqRLJe+dkYrHBWKJlJFkIbayYOnuDeaN80A==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      dexie: ^4.0.1-alpha.5
+    dependencies:
+      dexie: 4.0.4
+      dexie-cloud-common: 1.0.33
+      rxjs: 7.8.1
+    dev: false
+
+  /dexie-cloud-common@1.0.33:
+    resolution: {integrity: sha512-n/R6YHPYXnA80XTy8qJDXj3ejZhA01nSpUqltSU7iiTZ99NOX9a/BQya6Z8+fb1iFK3wJc3Zt9aE5s5SSpbK0Q==}
+    dev: false
+
+  /dexie@4.0.4:
+    resolution: {integrity: sha512-wFzwWSUdi+MC3jiFeQcCp9nInR7EaX8edzYY+4wmiITkQAiSnHpe4Wo2o5Ce5tJZe2nqt7mLW91MsW4GYx3ziQ==}
+    dev: false
+
   /didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
@@ -2325,6 +2350,12 @@ packages:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
       queue-microtask: 1.2.3
+
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
 
   /sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
