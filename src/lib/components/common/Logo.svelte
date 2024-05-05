@@ -3,9 +3,11 @@
 	import { Snail } from 'lucide-svelte';
 </script>
 
-<a href="/" class="flex gap-1 items-center">
-	<Button size="icon" variant="link">
-		<Snail class="h-7 w-7" strokeWidth="1.8" />
+<div class="flex gap-1 items-center">
+	<Button size="icon" variant="link" href="/">
+		<Snail class="h-7 w-7" />
 	</Button>
-	<h1 class="text-xl">Home</h1>
-</a>
+	<a href="/">
+		<h1 class="text-xl">Home</h1>
+	</a>
+</div>
