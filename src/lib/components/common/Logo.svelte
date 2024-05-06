@@ -8,6 +8,6 @@
 		<Snail class="h-7 w-7" />
 	</Button>
 	<a href="/">
-		<h1 class="text-xl">Home</h1>
+		<h1 class="text-2xl">Home</h1>
 	</a>
 </div>
