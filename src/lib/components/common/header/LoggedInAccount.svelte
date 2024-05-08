@@ -10,8 +10,8 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="link">
-			<CircleUserRound class="h-7 w-7" />
+		<Button builders={[builder]} variant="ghost" size="icon">
+			<CircleUserRound />
 			<span class="sr-only">Toggle user menu</span>
 		</Button>
 	</DropdownMenu.Trigger>

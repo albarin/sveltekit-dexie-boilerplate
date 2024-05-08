@@ -3,4 +3,4 @@
 	import { Button } from '$lib/components/ui/button';
 </script>
 
-<Button size="sm" onclick={login}>Sign in</Button>
+<Button variant="ghost" onclick={login}>Sign in</Button>
