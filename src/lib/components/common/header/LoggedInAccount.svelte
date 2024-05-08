@@ -1,7 +1,11 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { logout } from '$lib/auth';
+	import { Button } from '$lib/components/ui/button';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { db } from '$lib/db';
 	import { CircleUserRound } from 'lucide-svelte';
+
+	const user = db.cloud.currentUser;
 </script>
 
 <DropdownMenu.Root>
@@ -12,11 +16,8 @@
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
-		<DropdownMenu.Label>My Account</DropdownMenu.Label>
+		<DropdownMenu.Label>{$user.email}</DropdownMenu.Label>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>Settings</DropdownMenu.Item>
-		<DropdownMenu.Item>Support</DropdownMenu.Item>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Item>Logout</DropdownMenu.Item>
+		<DropdownMenu.Item onclick={logout}>Logout</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>
