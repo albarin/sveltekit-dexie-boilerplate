@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { db } from '$lib/db';
-	import { CircleUserRound } from 'lucide-svelte';
+	import Avatar from './Avatar.svelte';
 
 	const user = db.cloud.currentUser;
 </script>
@@ -11,7 +11,7 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="ghost" size="icon">
-			<CircleUserRound />
+			<Avatar />
 			<span class="sr-only">Toggle user menu</span>
 		</Button>
 	</DropdownMenu.Trigger>

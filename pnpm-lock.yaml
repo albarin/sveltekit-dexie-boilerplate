@@ -17,6 +17,9 @@ dependencies:
   dexie-cloud-addon:
     specifier: ^4.0.5
     version: 4.0.5(dexie@4.0.4)
+  js-sha256:
+    specifier: ^0.11.0
+    version: 0.11.0
   lucide-svelte:
     specifier: ^0.378.0
     version: 0.378.0(svelte@5.0.0-next.125)
@@ -1768,6 +1771,10 @@ packages:
   /jiti@1.21.0:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
+
+  /js-sha256@0.11.0:
+    resolution: {integrity: sha512-6xNlKayMZvds9h1Y1VWc0fQHQ82BxTXizWPEtEeGvmOUYpBRy4gbWroHLpzowe6xiQhHpelCQiE7HEdznyBL9Q==}
+    dev: false
 
   /js-tokens@9.0.0:
     resolution: {integrity: sha512-WriZw1luRMlmV3LGJaR6QOJjWwgLUTf89OwT2lUOyjX2dJGBwgmIkbcz+7WFZjrZM635JOIR517++e/67CP9dQ==}
