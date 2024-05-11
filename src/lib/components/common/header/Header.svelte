@@ -4,11 +4,13 @@
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
 
-<header class="sticky top-0 flex justify-between h-16 items-center">
-	<Logo />
+<header class="sticky top-0 bg-background border-b p-2 px-4">
+	<div class="flex justify-between items-center">
+		<Logo />
 
-	<div class="flex gap-2 justify-center">
-		<ThemeSwitcher />
-		<Account />
+		<div class="flex gap-2 justify-center">
+			<ThemeSwitcher />
+			<Account />
+		</div>
 	</div>
 </header>

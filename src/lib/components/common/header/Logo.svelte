@@ -5,9 +5,9 @@
 
 <div class="flex gap-1 items-center">
 	<Button size="icon" variant="link" href="/">
-		<Snail class="h-7 w-7" />
+		<Snail class="h-8 w-8" />
 	</Button>
 	<a href="/">
-		<h1 class="text-2xl">Home</h1>
+		<h1 class="text-xl">Logo</h1>
 	</a>
 </div>

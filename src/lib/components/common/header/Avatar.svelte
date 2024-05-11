@@ -8,7 +8,7 @@
 	const email = $user.email || '';
 </script>
 
-<Avatar.Root class="h-6 w-6">
+<Avatar.Root class="h-7 w-7">
 	<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
 	<Avatar.Fallback>
 		<CircleUserRound />

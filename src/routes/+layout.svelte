@@ -8,10 +8,12 @@
 
 <ModeWatcher />
 
-<div class="container flex min-h-screen w-full flex-col">
+<div class="bg-muted/40">
 	<Header />
 
-	<main class="h-screen p-4 md:p-10">
-		{@render children()}
-	</main>
+	<div class="container flex min-h-screen w-full flex-col">
+		<main class="h-screen p-4 md:p-10">
+			{@render children()}
+		</main>
+	</div>
 </div>
