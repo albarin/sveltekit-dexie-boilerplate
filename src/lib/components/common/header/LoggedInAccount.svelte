@@ -9,8 +9,8 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="ghost" size="icon">
+	<DropdownMenu.Trigger>
+		<Button variant="ghost" size="icon">
 			<Avatar />
 			<span class="sr-only">Toggle user menu</span>
 		</Button>

@@ -8,7 +8,7 @@
 	<div class="flex justify-between items-center">
 		<Logo />
 
-		<div class="flex gap-2 justify-center">
+		<div class="flex gap-1 justify-center">
 			<ThemeSwitcher />
 			<Account />
 		</div>
