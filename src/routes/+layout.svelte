@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/components/common/header/Header.svelte';
+	import { Toaster } from '$lib/components/ui/sonner';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
 
@@ -16,4 +17,6 @@
 			{@render children()}
 		</main>
 	</div>
+
+	<Toaster richColors closeButton />
 </div>
