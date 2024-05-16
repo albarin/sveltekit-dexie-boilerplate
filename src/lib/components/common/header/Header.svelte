@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Account from './Account.svelte';
+	import LicenseBadge from './LicenseBadge.svelte';
 	import Logo from './Logo.svelte';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
@@ -8,7 +9,9 @@
 	<div class="flex justify-between items-center">
 		<Logo />
 
-		<div class="flex gap-1 justify-center">
+		<LicenseBadge />
+
+		<div class="flex gap-1 justify-center items-center">
 			<ThemeSwitcher />
 			<Account />
 		</div>

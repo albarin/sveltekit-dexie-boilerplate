@@ -1,5 +1,4 @@
 <script lang="ts">
-	import StatusToaster from '$lib/components/common/StatusToaster.svelte';
 	import Header from '$lib/components/common/header/Header.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
@@ -17,6 +16,4 @@
 			{@render children()}
 		</main>
 	</div>
-
-	<StatusToaster />
 </div>
