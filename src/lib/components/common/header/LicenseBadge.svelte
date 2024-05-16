@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
+	import { inSync, login } from '$lib/auth';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card';
 	import { db } from '$lib/db';
-	import { inSync, login } from '$lib/auth';
-	import Button from '$lib/components/ui/button/button.svelte';
+	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
 
 	const user = db.cloud.currentUser;
 	const syncState = db.cloud.syncState;
@@ -15,13 +15,13 @@
 			return {
 				label: 'Offline',
 				content:
-					'You are offline. All your data is stored on your browser and will be lost if you clear your data or change devices.',
+					'You are offline. All your data is stored on your browser only. Start your free trial to sync your data and try premium features.',
 				button: {
-					label: 'Login to sync data',
+					label: 'Start free trial!',
 					action: login
 				},
-				color: 'bg-gray-500',
-				hoverColor: 'hover:bg-gray-700'
+				color: 'text-gray-100 bg-gray-500 dark:bg-gray-600',
+				hoverColor: 'hover:bg-gray-400 dark:hover:bg-gray-500'
 			};
 		}
 
@@ -29,13 +29,13 @@
 			return {
 				label: 'Expired',
 				content:
-					'Your license is expired. You can still use the app but you will not be able to sync your data or access premium features.',
+					"Your license is expired. You can still use the app but you don't have access premium to features anymore.",
 				button: {
 					label: 'Renew your license',
 					action: () => console.log('Renew your license')
 				},
-				color: 'bg-red-500',
-				hoverColor: 'hover:bg-red-700'
+				color: 'text-red-100 bg-red-500 dark:bg-red-600',
+				hoverColor: 'hover:bg-red-400 dark:hover:bg-red-500'
 			};
 		}
 
@@ -45,11 +45,11 @@
 				label: 'Trial',
 				content: `Your free trial ends in ${licenseExpiresInDays} days. Upgrade to continue using the app and access premium features.`,
 				button: {
-					label: 'Upgrade now',
+					label: 'Upgrade now!',
 					action: () => console.log('Upgrade now')
 				},
-				color: 'bg-yellow-500',
-				hoverColor: 'hover:bg-yellow-700'
+				color: 'text-blue-100 bg-blue-500 dark:bg-blue-600',
+				hoverColor: 'hover:bg-blue-400 dark:hover:bg-blue-500'
 			};
 		}
 	});
@@ -58,7 +58,7 @@
 {#if synced && !licenseIsValid($user.license)}
 	<HoverCard.Root>
 		<HoverCard.Trigger>
-			<Badge class={`${license?.color} ${license?.hoverColor}`}>
+			<Badge class={`font-normal text-sm ${license?.color} ${license?.hoverColor}`}>
 				{license?.label}
 			</Badge>
 		</HoverCard.Trigger>
