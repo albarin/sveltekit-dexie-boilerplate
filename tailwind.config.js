@@ -56,7 +56,10 @@ const config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
-			}
+			},
+			animation: {
+				'spin-slow': 'spin 2s linear infinite'
+			},
 		}
 	},
 };

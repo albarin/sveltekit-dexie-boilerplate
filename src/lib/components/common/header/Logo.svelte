@@ -3,7 +3,7 @@
 	import { Snail } from 'lucide-svelte';
 </script>
 
-<div class="flex gap-1 items-center">
+<div class="flex flex-1 justify-start gap-1 items-center">
 	<Button size="icon" variant="link" href="/">
 		<Snail class="h-8 w-8" />
 	</Button>

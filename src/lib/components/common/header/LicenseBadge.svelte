@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { inSync, login } from '$lib/auth';
+	import { login } from '$lib/auth';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card';
@@ -9,7 +9,6 @@
 	const user = db.cloud.currentUser;
 	const syncState = db.cloud.syncState;
 
-	const synced = $derived(inSync($syncState));
 	const license = $derived.by(() => {
 		if (!$user.license) {
 			return {
@@ -55,10 +54,12 @@
 	});
 </script>
 
-{#if synced && !licenseIsValid($user.license)}
+{#if $syncState.phase !== 'offline' && !licenseIsValid($user.license)}
 	<HoverCard.Root>
 		<HoverCard.Trigger>
-			<Badge class={`font-normal text-sm ${license?.color} ${license?.hoverColor}`}>
+			<Badge
+				class={`flex-1 justify-center font-normal text-sm ${license?.color} ${license?.hoverColor}`}
+			>
 				{license?.label}
 			</Badge>
 		</HoverCard.Trigger>
