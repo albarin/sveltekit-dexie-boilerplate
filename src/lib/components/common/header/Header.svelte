@@ -6,7 +6,7 @@
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
 
-<header class="sticky top-0 bg-background border-b p-2 px-4">
+<header class="sticky top-0 bg-background border-b py-1 px-4">
 	<div class="flex items-center">
 		<Logo />
 
