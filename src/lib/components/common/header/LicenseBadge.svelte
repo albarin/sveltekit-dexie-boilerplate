@@ -7,7 +7,6 @@
 	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
 
 	const user = db.cloud.currentUser;
-	const syncState = db.cloud.syncState;
 
 	const license = $derived.by(() => {
 		if (!$user.license) {
@@ -47,8 +46,8 @@
 					label: 'Upgrade now!',
 					action: () => console.log('Upgrade now')
 				},
-				color: 'text-blue-100 bg-blue-500 dark:bg-blue-600',
-				hoverColor: 'hover:bg-blue-400 dark:hover:bg-blue-500'
+				color: 'text-teal-100 bg-teal-600 dark:bg-teal-700',
+				hoverColor: 'hover:bg-teal-500 dark:hover:bg-teal-600'
 			};
 		}
 	});
