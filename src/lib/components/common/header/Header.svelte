@@ -2,6 +2,7 @@
 	import Account from './Account.svelte';
 	import LicenseBadge from './LicenseBadge.svelte';
 	import Logo from './Logo.svelte';
+	import Notifications from './Notifications.svelte';
 	import SyncStatus from './SyncStatus.svelte';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
@@ -15,6 +16,7 @@
 		<div class="flex flex-1 gap-1 items-center justify-end">
 			<SyncStatus />
 			<ThemeSwitcher />
+			<Notifications />
 			<Account />
 		</div>
 	</div>
