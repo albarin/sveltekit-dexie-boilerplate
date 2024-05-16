@@ -54,7 +54,7 @@
 	});
 </script>
 
-{#if $syncState.phase !== 'offline' && !licenseIsValid($user.license)}
+{#if !licenseIsValid($user.license)}
 	<HoverCard.Root>
 		<HoverCard.Trigger>
 			<Badge
