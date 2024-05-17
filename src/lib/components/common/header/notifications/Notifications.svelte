@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Bell } from 'lucide-svelte';
+	import NotificationDot from './NotificationDot.svelte';
+	import NotificationsPanel from './NotificationsPanel.svelte';
 
-	const notifications = [];
+	const notifications = [3];
 
 	const title = $derived(
 		!notifications.length
@@ -14,14 +16,10 @@
 <Button class="relative" size="icon" variant="ghost" {title}>
 	<Bell />
 	{#if notifications.length > 0}
-		<span class="absolute flex h-2 w-2 bottom-5 right-[10px]">
-			<span
-				class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
-			>
-			</span>
-			<span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-		</span>
+		<NotificationDot />
 	{/if}
+
+	<NotificationsPanel />
 </Button>
 
 <style>

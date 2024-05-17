@@ -2,7 +2,7 @@
 	import Account from './Account.svelte';
 	import LicenseBadge from './LicenseBadge.svelte';
 	import Logo from './Logo.svelte';
-	import Notifications from './Notifications.svelte';
+	import Notifications from './notifications/Notifications.svelte';
 	import SyncStatus from './SyncStatus.svelte';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
