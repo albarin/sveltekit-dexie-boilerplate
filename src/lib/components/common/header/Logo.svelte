@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex flex-1 justify-start gap-1 items-center">
-	<a class="flex gap-2" href="/">
+	<a class="flex gap-2 items-center" href="/">
 		<Snail class="h-8 w-8" />
 		<h1 class="text-xl">Logo</h1>
 	</a>
