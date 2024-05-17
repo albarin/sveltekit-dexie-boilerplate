@@ -19,7 +19,13 @@
 	);
 </script>
 
-<Button class="relative" size="icon" variant="ghost" {title} on:click={() => (open = true)}>
+<Button
+	class={`relative ${open ? 'pointer-events-none' : ''}`}
+	size="icon"
+	variant="ghost"
+	{title}
+	on:click={() => (open = true)}
+>
 	<Bell />
 	{#if $notifications?.length > 0}
 		<NotificationDot />
