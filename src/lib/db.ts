@@ -9,8 +9,8 @@ export interface Settings {
 }
 
 export interface Notification {
-  id: number;
-  body: string;
+  id?: number;
+  message: string;
   read: boolean;
   date: Date;
 }

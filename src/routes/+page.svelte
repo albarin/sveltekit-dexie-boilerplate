@@ -2,7 +2,11 @@
 	import { db } from '$lib/db';
 
 	async function test() {
-		await db.notifications.add({ body: new Date().toISOString(), read: false, date: new Date() });
+		await db.notifications.add({
+			message: new Date().toISOString(),
+			read: false,
+			date: new Date()
+		});
 	}
 </script>
 
