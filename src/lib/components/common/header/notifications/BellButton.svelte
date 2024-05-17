@@ -3,8 +3,8 @@
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { Bell } from 'lucide-svelte';
-	import NotificationDot from './NotificationDot.svelte';
-	import NotificationsPanel from './NotificationsPanel.svelte';
+	import NotificationDot from './RedDot.svelte';
+	import NotificationsPanel from './Panel.svelte';
 
 	let notifications = liveQuery(
 		async () => await db.notifications.orderBy('date').reverse().toArray()

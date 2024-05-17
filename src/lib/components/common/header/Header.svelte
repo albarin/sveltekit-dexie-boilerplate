@@ -4,7 +4,7 @@
 	import Logo from './Logo.svelte';
 	import SyncStatus from './SyncStatus.svelte';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
-	import Notifications from './notifications/Notifications.svelte';
+	import Notifications from './notifications/BellButton.svelte';
 </script>
 
 <header class="sticky top-0 bg-background border-b py-1 px-4">
