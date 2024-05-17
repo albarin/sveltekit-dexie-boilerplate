@@ -15,9 +15,13 @@ export const licenseIsExpired = (license: License | undefined): boolean => {
   return !!license && license.status !== 'ok';
 }
 
-export const licenseDaysLeft = (license: License | undefined): number => {
+export const licenseDaysLeft = (license: License | undefined): number | undefined => {
   if (!license) {
     return 0;
+  }
+
+  if (license.status === 'ok') {
+    return undefined
   }
 
   let daysLeft = license.evalDaysLeft || 0;
