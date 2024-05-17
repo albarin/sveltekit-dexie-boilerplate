@@ -8,14 +8,23 @@ export interface Settings {
   value: string;
 }
 
+export interface Notification {
+  id: number;
+  body: string;
+  read: boolean;
+  date: Date;
+}
+
 export class DB extends Dexie {
   settings!: Table<Settings>;
+  notifications!: Table<Notification>;
 
   constructor() {
     super(PUBLIC_DB_NAME, { addons: [dexieCloud] });
 
     this.version(1).stores({
-      settings: '@id, key'
+      settings: '@id, key',
+      notifications: '@id, read, date',
     });
 
     this.cloud.configure({

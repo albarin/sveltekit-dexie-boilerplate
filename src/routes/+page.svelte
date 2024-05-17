@@ -2,7 +2,7 @@
 	import { db } from '$lib/db';
 
 	async function test() {
-		const data = await db.settings.add({ key: 'foo', value: 'bar' });
+		await db.notifications.add({ body: new Date().toISOString(), read: false, date: new Date() });
 	}
 </script>
 
