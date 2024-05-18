@@ -42,6 +42,10 @@ export class Settings {
     return new Settings(key, value);
   }
 
+  static async get(key: string) {
+    return db.settings.get({ key })
+  }
+
   async save() {
     try {
       await db.settings.add(this);
@@ -86,6 +90,10 @@ export class Notification {
 
   static create(message: string) {
     return new Notification(message);
+  }
+
+  static async all() {
+    return db.notifications.orderBy('created_at').reverse().toArray();
   }
 
   async save() {

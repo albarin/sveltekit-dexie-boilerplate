@@ -2,7 +2,7 @@
 	import { Notification } from '$lib/db';
 
 	async function test() {
-		const n = Notification.create('test static');
+		const n = Notification.create(new Date().toUTCString());
 		await n.save();
 	}
 </script>

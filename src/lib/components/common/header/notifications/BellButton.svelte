@@ -1,14 +1,12 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { db } from '$lib/db';
+	import { Notification, db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { Bell } from 'lucide-svelte';
 	import NotificationsPanel from './Panel.svelte';
 	import NotificationDot from './RedDot.svelte';
 
-	let notifications = liveQuery(
-		async () => await db.notifications.orderBy('created_at').reverse().toArray()
-	);
+	let notifications = liveQuery(() => Notification.all());
 
 	let open = $state(false);
 
