@@ -6,7 +6,9 @@ export interface License {
 }
 
 export const licenseIsValid = (license: License | undefined): boolean => {
-  return !!license && license.status === 'ok' &&
+  return !!license &&
+    license.type === 'prod' &&
+    license.status === 'ok' &&
     license.validUntil === undefined &&
     license.evalDaysLeft === undefined
 }
@@ -20,8 +22,8 @@ export const licenseDaysLeft = (license: License | undefined): number | undefine
     return 0;
   }
 
-  if (license.status === 'ok') {
-    return undefined
+  if (license.type === 'prod' && license.status === 'ok') {
+    return undefined;
   }
 
   let daysLeft = license.evalDaysLeft || 0;
