@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { db } from '$lib/db';
+	import { Notification } from '$lib/db';
 
 	async function test() {
-		await db.notifications.add({
-			message: new Date().toISOString(),
-			read: false,
-			date: new Date()
-		});
+		const n = Notification.create('test static');
+		await n.save();
 	}
 </script>
 

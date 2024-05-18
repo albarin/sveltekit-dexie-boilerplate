@@ -3,11 +3,11 @@
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { Bell } from 'lucide-svelte';
-	import NotificationDot from './RedDot.svelte';
 	import NotificationsPanel from './Panel.svelte';
+	import NotificationDot from './RedDot.svelte';
 
 	let notifications = liveQuery(
-		async () => await db.notifications.orderBy('date').reverse().toArray()
+		async () => await db.notifications.orderBy('created_at').reverse().toArray()
 	);
 
 	let open = $state(false);
