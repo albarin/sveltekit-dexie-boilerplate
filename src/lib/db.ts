@@ -75,11 +75,13 @@ export class Notification {
   message: string;
   read: boolean;
   created_at: string;
+  updated_at?: string;
 
   constructor(message: string) {
     this.message = message;
     this.read = false;
     this.created_at = new Date().toISOString();
+    this.updated_at = new Date().toISOString();
   }
 
   static create(message: string) {
@@ -96,7 +98,10 @@ export class Notification {
 
   async markAsRead() {
     try {
-      await db.notifications.update(this.id, { read: true });
+      await db.notifications.update(this.id, {
+        read: true,
+        updated_at: new Date().toISOString()
+      });
     } catch (e) {
       alert(`Failed to mark notification as read: ${e}`);
     }
