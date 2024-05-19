@@ -13,7 +13,7 @@
 
 		<LicenseBadge />
 
-		<div class="flex flex-1 gap-1 items-center justify-end">
+		<div class="flex flex-1 items-center justify-end">
 			<SyncStatus />
 			<ThemeSwitcher />
 			<Notifications />

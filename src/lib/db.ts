@@ -3,8 +3,10 @@ import Dexie, { type Table } from 'dexie';
 import dexieCloud from 'dexie-cloud-addon';
 
 export class DB extends Dexie {
-  settings!: Table<Settings>;
+  settings!: Table<Setting>;
   notifications!: Table<Notification>;
+
+  backupTables = ['settings', 'notifications'];
 
   constructor() {
     super(PUBLIC_DB_NAME, { addons: [dexieCloud] });
@@ -15,16 +17,17 @@ export class DB extends Dexie {
     });
 
     this.notifications.mapToClass(Notification);
-    this.settings.mapToClass(Settings);
+    this.settings.mapToClass(Setting);
 
     this.cloud.configure({
       databaseUrl: PUBLIC_DB_URL || '',
       requireAuth: false,
+      customLoginGui: true
     });
   }
 }
 
-export class Settings {
+export class Setting {
   id?: string;
   key: string;
   value: string;
@@ -39,7 +42,10 @@ export class Settings {
   }
 
   static create(key: string, value: string) {
-    return new Settings(key, value);
+    const setting = new Setting(key, value);
+    setting.save();
+
+    return setting;
   }
 
   static async get(key: string) {
@@ -54,11 +60,11 @@ export class Settings {
     }
   }
 
-  async update() {
+  static async update(setting: Setting, changes) {
     try {
-      await db.settings.update(this.id, {
-        value: this.value,
-        updated_at: new Date().toISOString()
+      await db.settings.put({
+        ...setting,
+        ...changes,
       });
     } catch (e) {
       alert(`Failed to update setting: ${e}`);
@@ -89,7 +95,10 @@ export class Notification {
   }
 
   static create(message: string) {
-    return new Notification(message);
+    const notification = new Notification(message);
+    notification.save();
+
+    return notification;
   }
 
   static async all() {

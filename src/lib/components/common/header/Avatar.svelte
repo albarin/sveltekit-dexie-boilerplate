@@ -5,12 +5,13 @@
 	import { UserRound } from 'lucide-svelte';
 
 	const user = db.cloud.currentUser;
-	const email = $user.email || '';
+	const email = $derived($user.email || '');
 </script>
 
-<Avatar.Root class="h-7 w-7">
-	<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
-	<Avatar.Fallback>
+<Avatar.Root class="h-7 w-7 flex items-center justify-center">
+	{#if $user.isLoggedIn}
+		<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
+	{:else}
 		<UserRound />
-	</Avatar.Fallback>
+	{/if}
 </Avatar.Root>
