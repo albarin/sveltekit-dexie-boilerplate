@@ -23,7 +23,7 @@
 			</Dialog.Description>
 		</Dialog.Header>
 		<form class="space-y-4">
-			<div>
+			<div class="flex flex-col gap-2">
 				<Input type="string" bind:value={otp} />
 				{#if $ui?.alerts && $ui?.alerts?.length > 1 && otp.length > 0}
 					<span class="text-sm text-red-400">{$ui.alerts[1].message}</span>

@@ -5,6 +5,7 @@
 	import Separator from '../ui/separator/separator.svelte';
 	import Backup from './Backup.svelte';
 	import Import from './Import.svelte';
+	import LicenseStatus from './AccountLicense.svelte';
 
 	let { open = $bindable() }: { open: boolean } = $props();
 
@@ -27,6 +28,7 @@
 			<Separator />
 		</Sheet.Header>
 
+		<LicenseStatus />
 		<Backup />
 		<Import />
 	</Sheet.Content>

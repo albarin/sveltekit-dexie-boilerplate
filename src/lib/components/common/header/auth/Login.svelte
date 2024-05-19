@@ -18,8 +18,10 @@
 <Dialog.Root bind:open>
 	<Dialog.Content role="dialog" class="dialog sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>Create an account</Dialog.Title>
-			<Dialog.Description>Enter your email below to create your account</Dialog.Description>
+			<Dialog.Title>Log in or create an account</Dialog.Title>
+			<Dialog.Description>
+				Enter your email below to log in or create your account.
+			</Dialog.Description>
 		</Dialog.Header>
 
 		<form class="space-y-4">

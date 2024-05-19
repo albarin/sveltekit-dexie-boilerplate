@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { login } from '$lib/auth';
-	import Badge from '$lib/components/ui/badge/badge.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import * as HoverCard from '$lib/components/ui/hover-card';
+	import { inSync, login } from '$lib/auth';
+	import * as Alert from '$lib/components/ui/alert';
+	import { Button } from '$lib/components/ui/button';
 	import { db } from '$lib/db';
 	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
+	import * as Section from './section';
 
 	const user = db.cloud.currentUser;
+	const syncState = db.cloud.syncState;
+	const synced = $derived(inSync($syncState));
 
-	const license = $derived.by(() => {
+	let license = $derived.by(() => {
 		if (!$user.license) {
 			return {
 				label: 'Offline',
@@ -19,8 +21,7 @@
 					action: login,
 					color: 'bg-gray-500'
 				},
-				color: 'text-gray-100 bg-gray-500 dark:bg-gray-600',
-				hoverColor: 'hover:bg-gray-400 dark:hover:bg-gray-500'
+				color: 'text-gray-500 border-gray-500 bg-gray-50'
 			};
 		}
 
@@ -34,8 +35,7 @@
 					action: () => console.log('Renew your license'),
 					color: 'bg-red-500'
 				},
-				color: 'text-red-100 bg-red-500 dark:bg-red-600',
-				hoverColor: 'hover:bg-red-400 dark:hover:bg-red-500'
+				color: 'text-red-500 border-red-500 bg-red-50'
 			};
 		}
 
@@ -49,27 +49,24 @@
 					action: () => console.log('Upgrade now'),
 					color: 'bg-teal-600'
 				},
-				color: 'text-teal-100 bg-teal-600 dark:bg-teal-700',
-				hoverColor: 'hover:bg-teal-500 dark:hover:bg-teal-600'
+				color: 'text-teal-500 border-teal-500 bg-teal-50'
 			};
 		}
 	});
 </script>
 
-{#if !licenseIsValid($user.license)}
-	<HoverCard.Root>
-		<HoverCard.Trigger>
-			<Badge
-				class={`flex-1 justify-center font-normal text-sm ${license?.color} ${license?.hoverColor}`}
-			>
-				{license?.label}
-			</Badge>
-		</HoverCard.Trigger>
-		<HoverCard.Content class="text-sm text-center space-y-4">
-			<p>{license?.content}</p>
-			<Button class={license?.button.color} size="sm" onclick={license?.button?.action}>
-				{license?.button?.label}
-			</Button>
-		</HoverCard.Content>
-	</HoverCard.Root>
+{#if synced && !licenseIsValid($user.license)}
+	<Section.Root>
+		<Section.Content>
+			<Alert.Root class={`px-5 pt-4 pb-5 text-sm ${license?.color}`}>
+				<Alert.Title class="font-semibold text-lg">{license?.label}</Alert.Title>
+				<Alert.Description class="flex flex-col gap-4 items-start">
+					{license?.content}
+					<Button class={license?.button.color} size="sm" onclick={license?.button?.action}>
+						{license?.button?.label}
+					</Button>
+				</Alert.Description>
+			</Alert.Root>
+		</Section.Content>
+	</Section.Root>
 {/if}
