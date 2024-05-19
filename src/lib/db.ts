@@ -43,6 +43,8 @@ export class Setting {
   static create(key: string, value: string) {
     const setting = new Setting(key, value);
     setting.save();
+
+    return setting;
   }
 
   static async get(key: string) {
@@ -94,6 +96,8 @@ export class Notification {
   static create(message: string) {
     const notification = new Notification(message);
     notification.save();
+
+    return notification;
   }
 
   static async all() {
