@@ -9,7 +9,9 @@
 </script>
 
 <Avatar.Root class="h-7 w-7">
-	<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
+	{#if $user.isLoggedIn}
+		<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
+	{/if}
 	<Avatar.Fallback>
 		<UserRound />
 	</Avatar.Fallback>
