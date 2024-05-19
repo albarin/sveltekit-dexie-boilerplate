@@ -22,6 +22,7 @@ export class DB extends Dexie {
     this.cloud.configure({
       databaseUrl: PUBLIC_DB_URL || '',
       requireAuth: false,
+      customLoginGui: true
     });
   }
 }

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/common/header/Header.svelte';
+	import Login from '$lib/components/common/header/auth/Login.svelte';
+	import OTP from '$lib/components/common/header/auth/OTP.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
 
@@ -17,3 +19,6 @@
 		</main>
 	</div>
 </div>
+
+<Login />
+<OTP />
