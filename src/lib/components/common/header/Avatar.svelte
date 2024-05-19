@@ -11,6 +11,9 @@
 <Avatar.Root class="h-7 w-7 flex items-center justify-center">
 	{#if $user.isLoggedIn}
 		<Avatar.Image src="https://gravatar.com/avatar/{sha256(email)}" alt={$user.name} />
+		<Avatar.Fallback class="bg-white">
+			<UserRound />
+		</Avatar.Fallback>
 	{:else}
 		<UserRound />
 	{/if}
