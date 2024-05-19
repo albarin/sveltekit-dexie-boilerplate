@@ -33,7 +33,6 @@
 				<Button
 					type="submit"
 					onclick={() => {
-						// waitingForOTP = true;
 						$ui?.onSubmit({ email });
 						email = '';
 					}}
