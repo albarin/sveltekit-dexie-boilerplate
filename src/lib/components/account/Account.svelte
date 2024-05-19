@@ -4,6 +4,7 @@
 	import { X } from 'lucide-svelte';
 	import Separator from '../ui/separator/separator.svelte';
 	import Backup from './Backup.svelte';
+	import Import from './Import.svelte';
 
 	let { open = $bindable() }: { open: boolean } = $props();
 
@@ -27,6 +28,7 @@
 		</Sheet.Header>
 
 		<Backup />
+		<Import />
 	</Sheet.Content>
 </Sheet.Root>
 

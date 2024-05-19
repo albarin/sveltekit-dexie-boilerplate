@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { format } from '$lib/date';
 	import { Setting, db } from '$lib/db';
 	import { liveQuery } from 'dexie';
@@ -8,12 +8,14 @@
 	let backup = liveQuery(() => Setting.get('last_backup'));
 
 	const download = async () => {
-		const data = await Promise.all(
+		const tablesData = await Promise.all(
 			db.backupTables.map(async (table) => {
 				const tableData = await db.table(table).toArray();
 				return { [table]: tableData };
 			})
 		);
+
+		const data = tablesData.reduce((acc, obj) => Object.assign(acc, obj), {});
 
 		const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
