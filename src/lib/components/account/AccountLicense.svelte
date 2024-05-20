@@ -33,7 +33,7 @@
 				button: {
 					label: 'Renew your license',
 					action: () => console.log('Renew your license'),
-					color: 'bg-red-500'
+					color: 'bg-red-500 hover:bg-red-600'
 				},
 				color: 'text-red-500 border-red-500 bg-red-50'
 			};
@@ -47,9 +47,9 @@
 				button: {
 					label: 'Upgrade now!',
 					action: () => console.log('Upgrade now'),
-					color: 'bg-teal-600'
+					color: 'bg-amber-600 hover:bg-amber-500'
 				},
-				color: 'text-teal-500 border-teal-500 bg-teal-50'
+				color: 'text-amber-600 border-amber-600 bg-amber-50'
 			};
 		}
 	});
@@ -62,7 +62,11 @@
 				<Alert.Title class="font-semibold text-lg">{license?.label}</Alert.Title>
 				<Alert.Description class="flex flex-col gap-4 items-start">
 					{license?.content}
-					<Button class={license?.button.color} size="sm" onclick={license?.button?.action}>
+					<Button
+						class={`text-white ${license?.button.color}`}
+						size="sm"
+						onclick={license?.button?.action}
+					>
 						{license?.button?.label}
 					</Button>
 				</Alert.Description>

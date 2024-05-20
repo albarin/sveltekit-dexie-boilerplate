@@ -32,10 +32,10 @@
 				button: {
 					label: 'Renew your license',
 					action: () => console.log('Renew your license'),
-					color: 'bg-red-500'
+					color: 'bg-red-500 hover:bg-red-600'
 				},
 				color: 'text-red-100 bg-red-500 dark:bg-red-600',
-				hoverColor: 'hover:bg-red-400 dark:hover:bg-red-500'
+				hoverColor: 'hover:bg-red-600 dark:hover:bg-red-500'
 			};
 		}
 
@@ -47,10 +47,10 @@
 				button: {
 					label: 'Upgrade now!',
 					action: () => console.log('Upgrade now'),
-					color: 'bg-teal-600'
+					color: 'bg-amber-600 hover:bg-amber-500'
 				},
-				color: 'text-teal-100 bg-teal-600 dark:bg-teal-700',
-				hoverColor: 'hover:bg-teal-500 dark:hover:bg-teal-600'
+				color: 'text-amber-100 bg-amber-600 dark:bg-amber-700',
+				hoverColor: 'hover:bg-amber-500 dark:hover:bg-amber-600'
 			};
 		}
 	});
@@ -67,7 +67,11 @@
 		</HoverCard.Trigger>
 		<HoverCard.Content class="text-sm text-center space-y-4">
 			<p>{license?.content}</p>
-			<Button class={license?.button.color} size="sm" onclick={license?.button?.action}>
+			<Button
+				class={`text-white ${license?.button.color}`}
+				size="sm"
+				onclick={license?.button?.action}
+			>
 				{license?.button?.label}
 			</Button>
 		</HoverCard.Content>
