@@ -2,18 +2,18 @@
 	import Header from '$lib/components/common/header/Header.svelte';
 	import Login from '$lib/components/common/header/auth/Login.svelte';
 	import OTP from '$lib/components/common/header/auth/OTP.svelte';
+	import { detectSWUpdate } from '$lib/updates';
 	import { ModeWatcher } from 'mode-watcher';
-	import { pwaInfo } from 'virtual:pwa-info';
+	import { onMount } from 'svelte';
 	import '../app.css';
 
 	let { children } = $props();
 
-	let webManifestLink = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '');
+	onMount(() => {
+		detectSWUpdate();
+	});
 </script>
 
-<svelte:head>
-	{@html webManifestLink}
-</svelte:head>
 <ModeWatcher />
 
 <div class="bg-muted/40">

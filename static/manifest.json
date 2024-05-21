@@ -1,0 +1,30 @@
+{
+  "id": "boilerplate",
+  "name": "Boilerplate",
+  "description": "Boilerplate description",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#18181b",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "wide"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "narrow"
+    }
+  ]
+}
