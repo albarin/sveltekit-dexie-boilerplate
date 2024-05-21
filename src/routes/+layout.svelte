@@ -2,10 +2,16 @@
 	import Header from '$lib/components/common/header/Header.svelte';
 	import Login from '$lib/components/common/header/auth/Login.svelte';
 	import OTP from '$lib/components/common/header/auth/OTP.svelte';
+	import { detectSWUpdate } from '$lib/updates';
 	import { ModeWatcher } from 'mode-watcher';
+	import { onMount } from 'svelte';
 	import '../app.css';
 
 	let { children } = $props();
+
+	onMount(() => {
+		detectSWUpdate();
+	});
 </script>
 
 <ModeWatcher />
