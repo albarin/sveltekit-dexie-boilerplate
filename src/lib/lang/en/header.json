@@ -4,5 +4,6 @@
   "account.toggle_menu": "Toggle user menu",
   "account.menu_account": "Account",
   "account.sign_in": "Sign in",
-  "account.log_out": "Log out"
+  "account.log_out": "Log out",
+  "sync.syncing": "Syncing..."
 }

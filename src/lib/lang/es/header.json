@@ -4,5 +4,6 @@
   "account.toggle_menu": "Abrir menú",
   "account.menu_account": "Cuenta",
   "account.sign_in": "Iniciar sesión",
-  "account.log_out": "Cerrar sesión"
+  "account.log_out": "Cerrar sesión",
+  "sync.syncing": "Sincronizando..."
 }
