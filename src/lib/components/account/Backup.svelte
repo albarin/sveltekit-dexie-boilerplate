@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { format } from '$lib/date';
 	import { Setting, db } from '$lib/db';
+	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 	import Button from '../ui/button/button.svelte';
 	import * as Section from './section';
@@ -37,19 +38,21 @@
 
 <Section.Root>
 	<Section.Header>
-		<Section.Title>Backup</Section.Title>
+		<Section.Title>{$t('account.backup.title')}</Section.Title>
 		<Section.Description>
-			<p>Download your data to a file.</p>
+			<p>{$t('account.backup.description')}</p>
 			{#if $backup}
 				<p>
-					Your last backup was on the {format($backup.value)}.
+					{$t('account.backup.last_backup', { date: format($backup.value) })}
 				</p>
 			{:else}
-				<p>You haven't backed up your data yet.</p>
+				<p>{$t('account.backup.no_backup')}</p>
 			{/if}
 		</Section.Description>
 	</Section.Header>
 	<Section.Content>
-		<Button size="sm" on:click={download}>Download</Button>
+		<Button size="sm" on:click={download} title={$t('account.backup.download')}>
+			{$t('account.backup.download')}
+		</Button>
 	</Section.Content>
 </Section.Root>

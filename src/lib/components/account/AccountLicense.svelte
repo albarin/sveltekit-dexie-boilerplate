@@ -5,6 +5,7 @@
 	import { db } from '$lib/db';
 	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
 	import * as Section from './section';
+	import { t } from '$lib/translations';
 
 	const user = db.cloud.currentUser;
 	const syncState = db.cloud.syncState;
@@ -13,11 +14,10 @@
 	let license = $derived.by(() => {
 		if (!$user.license) {
 			return {
-				label: 'Offline',
-				content:
-					'You are offline. All your data is stored on your browser only. Start your free trial to sync your data and try premium features.',
+				label: $t('license.offline.label'),
+				content: $t('license.offline.content'),
 				button: {
-					label: 'Start free trial!',
+					label: $t('license.offline.button'),
 					action: login,
 					color: 'bg-gray-500'
 				},
@@ -27,11 +27,10 @@
 
 		if (licenseIsExpired($user.license)) {
 			return {
-				label: 'Expired',
-				content:
-					"Your license is expired. You can still use the app but you don't have access premium to features anymore.",
+				label: $t('license.expired.label'),
+				content: $t('license.expired.content'),
 				button: {
-					label: 'Renew your license',
+					label: $t('license.expired.button'),
 					action: () => console.log('Renew your license'),
 					color: 'bg-red-500 hover:bg-red-600'
 				},
@@ -42,10 +41,10 @@
 		let licenseExpiresInDays = licenseDaysLeft($user.license);
 		if (licenseExpiresInDays) {
 			return {
-				label: 'Trial',
-				content: `Your free trial ends in ${licenseExpiresInDays} days. Upgrade to continue using the app and access premium features.`,
+				label: $t('license.trial.label'),
+				content: $t('license.trial.content'),
 				button: {
-					label: 'Upgrade now!',
+					label: $t('license.trial.button'),
 					action: () => console.log('Upgrade now'),
 					color: 'bg-amber-600 hover:bg-amber-500'
 				},

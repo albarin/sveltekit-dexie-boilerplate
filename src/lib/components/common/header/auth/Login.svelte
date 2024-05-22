@@ -3,6 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Input } from '$lib/components/ui/input';
 	import { db } from '$lib/db';
+	import { t } from '$lib/translations';
 	import { isEmailValid } from '$lib/utils';
 
 	let ui = db.cloud.userInteraction;
@@ -18,9 +19,9 @@
 <Dialog.Root bind:open>
 	<Dialog.Content role="dialog" class="dialog sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>Log in or create an account</Dialog.Title>
+			<Dialog.Title>{$t('header.login.title')}</Dialog.Title>
 			<Dialog.Description>
-				Enter your email below to log in or create your account.
+				{$t('header.login.description')}
 			</Dialog.Description>
 		</Dialog.Header>
 
@@ -40,7 +41,7 @@
 					}}
 					disabled={!isEmailValid(email)}
 				>
-					Sign in
+					{$t('header.login.submit')}
 				</Button>
 			</Dialog.Footer>
 		</form>

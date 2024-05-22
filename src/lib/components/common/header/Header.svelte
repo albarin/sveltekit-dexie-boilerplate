@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Account from './Account.svelte';
+	import Account from './account/Account.svelte';
 	import LicenseBadge from './LicenseBadge.svelte';
 	import Logo from './Logo.svelte';
 	import SyncStatus from './SyncStatus.svelte';

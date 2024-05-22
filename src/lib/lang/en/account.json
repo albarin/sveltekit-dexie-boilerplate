@@ -1,0 +1,18 @@
+{
+  "title": "Account",
+  "button.close": "Close",
+  "backup.title": "Backup",
+  "backup.description": "Download your data to a file.",
+  "backup.last_backup": "Your last backup was on the {{date}}.",
+  "backup.no_backup": "You have not backed up your data yet.",
+  "backup.download": "Download",
+  "import.title": "Import",
+  "import.description": "Import data from your backup file.",
+  "import.importing": "Importing...",
+  "import.imported": "Data imported successfully.",
+  "import.error.no_file_selected": "No file selected.",
+  "import.error.file_size_exceeded": "File size exceeds the limit of 3MB.",
+  "import.error.invalid_file_type": "Invalid file type, must be a JSON file.",
+  "import.error.invalid_format": "Invalid backup format.",
+  "import.error.error_importing": "Error importing {{table}}, invalid table."
+}

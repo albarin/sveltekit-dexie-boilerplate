@@ -1,0 +1,11 @@
+{
+  "offline.label": "Desconectado",
+  "offline.content": "Estás desconectado. Tus datos están guardados sólo en tu navegador. Empieza tu prueba gratis para sincronizar tus datos y probar las funcionalidades premium.",
+  "offline.button": "Empieza tu prueba gratis",
+  "expired.label": "Caducado",
+  "expired.content": "Tu licencia ha caducado. Puedes seguir usando la aplicación pero ya no tienes acceso a las funcionalidades premium.",
+  "expired.button": "Renueva tu licencia",
+  "trial.label": "Prueba gratuita",
+  "trial.content": "Tu prueba gratis acaba en {{days}} días. Pásate a premium para continuar usando la aplicación y acceder a las funcionalidades premium.",
+  "trial.button": "Pásate a premium"
+}

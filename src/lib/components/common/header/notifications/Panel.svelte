@@ -7,15 +7,16 @@
 	interface Props {
 		open: boolean;
 		notifications: Notification[];
+		unreadCount: number;
 	}
 
-	let { open = $bindable(), notifications }: Props = $props();
+	let { open = $bindable(), notifications, unreadCount }: Props = $props();
 </script>
 
 <Popover.Root bind:open>
 	<Popover.Trigger />
 	<Popover.Content class="p-0" side="bottom" align="end" strategy="absolute">
-		<Header {notifications} />
+		<Header {notifications} {unreadCount} />
 
 		<List {notifications} />
 	</Popover.Content>
