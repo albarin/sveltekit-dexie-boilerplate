@@ -3,7 +3,7 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 	import { t } from '$lib/translations';
 	import { X } from 'lucide-svelte';
-	import Separator from '../ui/separator/separator.svelte';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import LicenseStatus from './AccountLicense.svelte';
 	import Backup from './Backup.svelte';
 	import Import from './Import.svelte';

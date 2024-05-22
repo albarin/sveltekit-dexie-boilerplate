@@ -2,7 +2,7 @@
 	import { db } from '$lib/db';
 	import { t } from '$lib/translations';
 	import { RefreshCw } from 'lucide-svelte';
-	import * as Section from '../ui/section';
+	import * as Section from '$lib/components/ui/section';
 
 	let error = $state('');
 	let uploading = $state(false);
