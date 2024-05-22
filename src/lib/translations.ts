@@ -17,6 +17,20 @@ const config = ({
         await import('./lang/es/header.json')
       ).default,
     },
+    {
+      locale: 'en',
+      key: 'license',
+      loader: async () => (
+        await import('./lang/en/license.json')
+      ).default,
+    },
+    {
+      locale: 'es',
+      key: 'license',
+      loader: async () => (
+        await import('./lang/es/license.json')
+      ).default,
+    },
   ]
 });
 

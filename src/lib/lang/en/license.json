@@ -1,0 +1,11 @@
+{
+  "offline.label": "Offline",
+  "offline.content": "You are offline. All your data is stored on your browser only. Start your free trial to sync your data and try premium features.",
+  "offline.button": "Start free trial!",
+  "expired.label": "Expired",
+  "expired.content": "Your license is expired. You can still use the app but you don't have access premium to features anymore.",
+  "expired.button": "Renew your license",
+  "trial.label": "Free trial",
+  "trial.content": "Your free trial ends in {{days}} days. Upgrade to continue using the app and access premium features.",
+  "trial.button": "Upgrade now!"
+}
