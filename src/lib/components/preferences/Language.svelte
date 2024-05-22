@@ -10,6 +10,9 @@
 	let language = liveQuery(() => Setting.get('language'));
 
 	let selectedLanguage = $state($language?.value || browserLocale);
+	$effect(() => {
+		selectedLanguage = $language?.value || browserLocale;
+	});
 
 	const languages: Record<string, string> = {
 		en: 'English',
@@ -17,13 +20,18 @@
 	};
 
 	const updateLanguage = async (
-		selected: Selected<{ value: string; label: string; disabled: boolean }> | undefined
+		selected: { value: string; label: string; disabled: boolean } | undefined
 	) => {
 		if (!selected) {
 			return;
 		}
 
-		Setting.update($language!, { value: selected.value });
+		if ($language) {
+			Setting.update($language, { value: selected.value });
+		} else {
+			Setting.create('language', selected.value);
+		}
+
 		invalidateAll();
 	};
 </script>

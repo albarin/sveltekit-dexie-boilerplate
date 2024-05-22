@@ -6,7 +6,7 @@ export const login = async () => {
 };
 
 export const logout = async () => {
-  await db.cloud.logout();
+  await db.cloud.logout({ force: true });
 };
 
 export const inSync = (syncState: SyncState) => {

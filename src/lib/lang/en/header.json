@@ -7,6 +7,7 @@
   "account.sign_in": "Sign in",
   "account.log_out": "Log out",
   "sync.syncing": "Syncing...",
+  "offline": "No network connection. Some features may be unavailable. Sync will resume when connection is restored.",
   "notifications.button.unread_1": "You have {{notifications}} unread notification",
   "notifications.button.unread_n": "You have {{notifications}} unread notifications",
   "notifications.button.no_notifications": "You have no unread notifications",
