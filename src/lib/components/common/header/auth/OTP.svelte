@@ -3,6 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Input } from '$lib/components/ui/input';
 	import { db } from '$lib/db';
+	import { t } from '$lib/translations';
 
 	let ui = db.cloud.userInteraction;
 
@@ -17,9 +18,9 @@
 <Dialog.Root bind:open>
 	<Dialog.Content role="dialog" class="dialog sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>Enter code</Dialog.Title>
+			<Dialog.Title>{$t('header.otp.title')}</Dialog.Title>
 			<Dialog.Description>
-				A One-Time password has been sent to your email, write it below to sign in.
+				{$t('header.otp.description')}
 			</Dialog.Description>
 		</Dialog.Header>
 		<form class="space-y-4">
@@ -38,7 +39,7 @@
 					}}
 					disabled={!otp.length}
 				>
-					Sign in
+				{$t('header.otp.submit')}
 				</Button>
 			</Dialog.Footer>
 		</form>

@@ -9,7 +9,7 @@ export const load: Load = async ({ url }) => {
   }
 
   const { pathname } = url;
-  const initLocale = 'en';
+  const initLocale = 'es';
 
   await loadTranslations(initLocale, pathname);
 

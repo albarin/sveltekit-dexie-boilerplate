@@ -5,5 +5,20 @@
   "account.menu_account": "Account",
   "account.sign_in": "Sign in",
   "account.log_out": "Log out",
-  "sync.syncing": "Syncing..."
+  "sync.syncing": "Syncing...",
+  "notifications.button.unread_1": "You have {{notifications}} unread notification",
+  "notifications.button.unread_n": "You have {{notifications}} unread notifications",
+  "notifications.button.no_notifications": "You have no unread notifications",
+  "notifications.title.notifications": "Notifications",
+  "notifications.title.no_notifications": "No notifications",
+  "notifications.header.button.mark_all_as_read": "Mark all as read",
+  "notifications.header.button.delete_all": "Delete all",
+  "notifications.notification.mark_as_read": "Mark as read",
+  "notifications.notification.delete": "Delete",
+  "login.title": "Log in or create an account",
+  "login.description": "Enter your email below to log in or create your account.",
+  "login.submit": "Sign in",
+  "otp.title": "Enter code",
+  "otp.description": "A One-Time password has been sent to your email, write it below to sign in.",
+  "otp.submit": "Sign in"
 }

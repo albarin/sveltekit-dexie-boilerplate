@@ -1,19 +1,23 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { Notification, db } from '$lib/db';
+	import { Notification } from '$lib/db';
+	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 	import { Bell } from 'lucide-svelte';
 	import NotificationsPanel from './Panel.svelte';
 	import NotificationDot from './RedDot.svelte';
 
+	let open = $state(false);
 	let notifications = liveQuery(() => Notification.all());
 
-	let open = $state(false);
+	const unreadCount = $derived($notifications?.filter((n) => !n.read).length);
 
 	const title = $derived(
-		$notifications?.length
-			? `You have ${$notifications.length} unread notifications`
-			: 'You have no unread notifications'
+		unreadCount
+			? $t(`header.notifications.button.unread_${unreadCount === 1 ? '1' : 'n'}`, {
+					notifications: unreadCount
+				})
+			: $t('header.notifications.button.no_notifications')
 	);
 </script>
 
@@ -25,9 +29,9 @@
 	on:click={() => (open = true)}
 >
 	<Bell />
-	{#if $notifications?.length > 0}
+	{#if unreadCount > 0}
 		<NotificationDot />
 	{/if}
 </Button>
 
-<NotificationsPanel bind:open notifications={$notifications} />
+<NotificationsPanel bind:open notifications={$notifications} {unreadCount} />
