@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { db } from '$lib/db';
+	import { t } from '$lib/translations';
 	import { RefreshCw } from 'lucide-svelte';
 	import * as Section from './section';
 
@@ -15,13 +16,13 @@
 		let maxFileSize = 3145728;
 		const file = uploader?.files![0];
 		if (!file) {
-			error = 'No file selected.';
+			error = $t('account.import.error.no_file_selected');
 			uploading = false;
 			return;
 		}
 
 		if (file.size > maxFileSize) {
-			error = 'File size exceeds the limit of 3MB.';
+			error = $t('account.import.error.file_size_exceeded');
 			uploading = false;
 			return;
 		}
@@ -30,7 +31,7 @@
 		const fileExtension = fileExtensionArray[fileExtensionArray.length - 1];
 
 		if (!fileExtension.includes('json')) {
-			error = 'Invalid file type, must be a JSON file.';
+			error = $t('account.import.error.invalid_file_type');
 			uploading = false;
 			return;
 		}
@@ -41,7 +42,7 @@
 		try {
 			jsonData = JSON.parse(text);
 		} catch (e) {
-			error = 'Invalid backup format.';
+			error = $t('account.import.error.invalid_format');
 			uploading = false;
 			return;
 		}
@@ -52,7 +53,7 @@
 			try {
 				await db.table(table).bulkPut(jsonData[table]);
 			} catch (e) {
-				error = `Error importing ${table}, invalid table.`;
+				error = $t('account.import.error.error_importing', { table });
 				uploading = false;
 				return;
 			}
@@ -65,8 +66,8 @@
 
 <Section.Root>
 	<Section.Header>
-		<Section.Title>Import</Section.Title>
-		<Section.Description>Import data from your backup file.</Section.Description>
+		<Section.Title>{$t('account.import.title')}</Section.Title>
+		<Section.Description>{$t('account.import.description')}</Section.Description>
 	</Section.Header>
 	<Section.Content>
 		<input
@@ -80,15 +81,15 @@
 			{#if uploading}
 				<span class="flex gap-2 items-center ml-2 text-green-600">
 					<RefreshCw class="animate-spin-slow" />
-					Importing...
+					{$t('account.import.importing')}
 				</span>
 			{:else if error && !done}
-				<span class="ml-2 text-destructive">{error}</span>
+				<span class="text-destructive">{error}</span>
 			{:else if done}
 				{#if error}
-					<span class="ml-2 text-destructive">{error}</span>
+					<span class="text-destructive">{error}</span>
 				{:else}
-					<span class="ml-2 text-success text-green-600 text-">Data imported successfully</span>
+					<span class="text-success text-green-600 text-">{$t('account.import.imported')}</span>
 				{/if}
 			{/if}
 		</div>

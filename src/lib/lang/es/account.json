@@ -1,0 +1,18 @@
+{
+  "title": "Cuenta",
+  "button.close": "Cerrar",
+  "backup.title": "Copia de seguridad",
+  "backup.description": "Descarga una copia de seguridad de tus datos.",
+  "backup.last_backup": "Tu última copia de seguridad fue el día {{date}}",
+  "backup.no_backup": "Aún no has hecho ninguna copia de seguridad.",
+  "backup.download": "Descarga",
+  "import.title": "Importar",
+  "import.description": "Importa tus datos desde una copia de seguridad.",
+  "import.importing": "Importando...",
+  "import.imported": "Importación completada correctamente.",
+  "import.error.no_file_selected": "No se ha seleccionado ningún archivo.",
+  "import.error.file_size_exceeded": "El tamaño del archivo excede el límite de 2MB.",
+  "import.error.invalid_file_type": "Tipo de archivo no válido. Debe ser un archivo JSON.",
+  "import.error.invalid_format": "Formato de archivo no válido.",
+  "import.error.error_importing": "Error al importar la tabla {{table}}."
+}
