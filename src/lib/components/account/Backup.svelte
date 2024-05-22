@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { PUBLIC_DB_NAME } from '$env/static/public';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Section from '$lib/components/ui/section';
 	import { format } from '$lib/date';
 	import { Setting, db } from '$lib/db';
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Section from '$lib/components/ui/section';
 
 	let backup = liveQuery(() => Setting.get('last_backup'));
 	let language = liveQuery(() => Setting.get('language'));
@@ -23,7 +24,7 @@
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement('a');
 		link.href = url;
-		link.download = 'boilerplate.json';
+		link.download = `${PUBLIC_DB_NAME}.json`;
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
