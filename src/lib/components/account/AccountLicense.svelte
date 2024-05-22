@@ -4,7 +4,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { db } from '$lib/db';
 	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
-	import * as Section from './section';
+	import * as Section from '../ui/section';
 	import { t } from '$lib/translations';
 
 	const user = db.cloud.currentUser;

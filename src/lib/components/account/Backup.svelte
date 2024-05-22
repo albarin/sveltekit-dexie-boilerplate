@@ -4,7 +4,7 @@
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 	import Button from '../ui/button/button.svelte';
-	import * as Section from './section';
+	import * as Section from '../ui/section';
 
 	let backup = liveQuery(() => Setting.get('last_backup'));
 
