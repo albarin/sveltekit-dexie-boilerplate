@@ -1,9 +1,12 @@
 import { DateTime } from 'luxon'
+import { fallbackLocale } from './translations';
 
-export const format = (date: DateTime | string) => {
-  if (typeof date === 'string') {
-    return DateTime.fromISO(date).toLocaleString();
-  }
+export const format = (date: DateTime | string, language: string | undefined) => {
+  const formattedDate = typeof date === 'string'
+    ? DateTime.fromISO(date)
+    : date;
 
-  return date.toLocaleString();
+  return formattedDate
+    .setLocale(language || fallbackLocale)
+    .toLocaleString();
 }

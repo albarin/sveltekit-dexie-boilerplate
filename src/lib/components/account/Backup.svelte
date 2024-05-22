@@ -7,6 +7,7 @@
 	import * as Section from '$lib/components/ui/section';
 
 	let backup = liveQuery(() => Setting.get('last_backup'));
+	let language = liveQuery(() => Setting.get('language'));
 
 	const download = async () => {
 		const tablesData = await Promise.all(
@@ -43,7 +44,7 @@
 			<p>{$t('account.backup.description')}</p>
 			{#if $backup}
 				<p>
-					{$t('account.backup.last_backup', { date: format($backup.value) })}
+					{$t('account.backup.last_backup', { date: format($backup.value, $language?.value) })}
 				</p>
 			{:else}
 				<p>{$t('account.backup.no_backup')}</p>
