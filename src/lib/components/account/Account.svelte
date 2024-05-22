@@ -10,7 +10,7 @@
 	let { open = $bindable() }: { open: boolean } = $props();
 </script>
 
-<Sheet.Root bind:open onOutsideClick={close}>
+<Sheet.Root bind:open>
 	<Sheet.Content class="account">
 		<CloseButton bind:open />
 
