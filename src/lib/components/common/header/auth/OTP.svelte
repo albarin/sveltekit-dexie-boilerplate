@@ -27,7 +27,9 @@
 			<div class="flex flex-col gap-2">
 				<Input type="string" bind:value={otp} />
 				{#if $ui?.alerts && $ui?.alerts?.length > 1 && otp.length > 0}
-					<span class="text-sm text-red-400">{$ui.alerts[1].message}</span>
+					<span class="text-sm text-red-400">
+						{$t(`header.otp.${$ui.alerts[1].messageCode.toLowerCase()}`)}
+					</span>
 				{/if}
 			</div>
 			<Dialog.Footer>
@@ -35,12 +37,14 @@
 					type="submit"
 					onclick={() => {
 						$ui?.onSubmit({ otp });
-						otp = '';
+						if ($ui?.alerts && !$ui?.alerts?.length) {
+							otp = '';
+						}
 					}}
 					disabled={!otp.length}
 					title={$t('header.otp.submit')}
 				>
-				{$t('header.otp.submit')}
+					{$t('header.otp.submit')}
 				</Button>
 			</Dialog.Footer>
 		</form>

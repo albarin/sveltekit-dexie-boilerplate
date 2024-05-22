@@ -21,6 +21,7 @@
   "login.description": "Enter your email below to log in or create your account.",
   "login.submit": "Sign in",
   "otp.title": "Enter code",
-  "otp.description": "A One-Time password has been sent to your email, write it below to sign in.",
-  "otp.submit": "Sign in"
+  "otp.description": "A one-time code has been sent to your email, write it below to sign in.",
+  "otp.submit": "Sign in",
+  "otp.invalid_otp": "Invalid one-time code, please try again."
 }

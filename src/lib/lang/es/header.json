@@ -22,5 +22,6 @@
   "login.submit": "Entra",
   "otp.title": "Escribe el código",
   "otp.description": "Hemos enviado un código de un solo uso a tu email, escríbelo a continuación para iniciar sesión.",
-  "otp.submit": "Entra"
+  "otp.submit": "Entra",
+  "otp.invalid_otp": "Código incorrecto, por favor inténtalo de nuevo."
 }
