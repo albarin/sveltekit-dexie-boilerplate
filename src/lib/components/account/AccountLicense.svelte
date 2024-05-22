@@ -2,9 +2,9 @@
 	import { inSync, login } from '$lib/auth';
 	import * as Alert from '$lib/components/ui/alert';
 	import { Button } from '$lib/components/ui/button';
+	import * as Section from '$lib/components/ui/section';
 	import { db } from '$lib/db';
 	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
-	import * as Section from './section';
 	import { t } from '$lib/translations';
 
 	const user = db.cloud.currentUser;

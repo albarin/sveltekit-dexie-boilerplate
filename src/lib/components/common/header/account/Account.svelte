@@ -2,6 +2,7 @@
 	import { pushState } from '$app/navigation';
 	import { login, logout } from '$lib/auth';
 	import Account from '$lib/components/account/Account.svelte';
+	import Preferences from '$lib/components/preferences/Preferences.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { db } from '$lib/db';
@@ -11,6 +12,7 @@
 	const user = db.cloud.currentUser;
 
 	let openAccount = $state(false);
+	let openPreferences = $state(false);
 </script>
 
 <DropdownMenu.Root>
@@ -38,6 +40,15 @@
 			{$t('header.account.menu_account')}
 		</DropdownMenu.Item>
 
+		<DropdownMenu.Item
+			onclick={() => {
+				pushState('/preferences', {});
+				openPreferences = true;
+			}}
+		>
+			{$t('header.account.menu_preferences')}
+		</DropdownMenu.Item>
+
 		{#if $user.isLoggedIn}
 			<DropdownMenu.Item onclick={logout}>{$t('header.account.log_out')}</DropdownMenu.Item>
 		{/if}
@@ -45,3 +56,4 @@
 </DropdownMenu.Root>
 
 <Account bind:open={openAccount} />
+<Preferences bind:open={openPreferences} />

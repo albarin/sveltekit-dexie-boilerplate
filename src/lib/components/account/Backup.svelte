@@ -3,8 +3,8 @@
 	import { Setting, db } from '$lib/db';
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
-	import Button from '../ui/button/button.svelte';
-	import * as Section from './section';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Section from '$lib/components/ui/section';
 
 	let backup = liveQuery(() => Setting.get('last_backup'));
 

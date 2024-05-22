@@ -1,6 +1,6 @@
 {
   "title": "Account",
-  "button.close": "Close",
+  "button.close": "Close account",
   "backup.title": "Backup",
   "backup.description": "Download your data to a file.",
   "backup.last_backup": "Your last backup was on the {{date}}.",

@@ -1,7 +1,10 @@
+import { browser } from '$app/environment';
 import i18n from 'sveltekit-i18n';
 
+export const fallbackLocale = 'en';
+
 const config = ({
-  fallbackLocale: 'en',
+  fallbackLocale,
   loaders: [
     {
       locale: 'en',
@@ -45,7 +48,23 @@ const config = ({
         await import('./lang/es/account.json')
       ).default,
     },
+    {
+      locale: 'en',
+      key: 'preferences',
+      loader: async () => (
+        await import('./lang/en/preferences.json')
+      ).default,
+    },
+    {
+      locale: 'es',
+      key: 'preferences',
+      loader: async () => (
+        await import('./lang/es/preferences.json')
+      ).default,
+    },
   ]
 });
 
 export const { t, locale, locales, loading, loadTranslations } = new i18n(config);
+
+export const browserLocale: string = browser ? navigator.language.split('-')[0] : fallbackLocale;

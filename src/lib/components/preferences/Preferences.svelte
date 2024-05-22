@@ -3,30 +3,26 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 	import { t } from '$lib/translations';
 	import CloseButton from '../common/CloseButton.svelte';
-	import LicenseStatus from './AccountLicense.svelte';
-	import Backup from './Backup.svelte';
-	import Import from './Import.svelte';
+	import Language from './Language.svelte';
 
 	let { open = $bindable() }: { open: boolean } = $props();
 </script>
 
 <Sheet.Root bind:open onOutsideClick={close}>
-	<Sheet.Content class="account">
+	<Sheet.Content class="preferences">
 		<CloseButton bind:open />
 
 		<Sheet.Header>
-			<Sheet.Title>{$t('account.title')}</Sheet.Title>
+			<Sheet.Title>{$t('preferences.title')}</Sheet.Title>
 			<Separator />
 		</Sheet.Header>
 
-		<LicenseStatus />
-		<Backup />
-		<Import />
+		<Language />
 	</Sheet.Content>
 </Sheet.Root>
 
 <style>
-	:global(.account button[data-dialog-close]) {
+	:global(.preferences button[data-dialog-close]) {
 		visibility: hidden;
 	}
 </style>
