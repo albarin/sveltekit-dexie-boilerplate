@@ -11,8 +11,8 @@
 	{#each notifications as n (n.id)}
 		<div key={n.id} class="flex justify-between pl-4 py-2" class:bg-muted={n.read}>
 			<button
-				title={$t('header.notifications.notification.mark_as_read')}
 				class="w-full text-sm text-left"
+				title={$t('header.notifications.notification.mark_as_read')}
 				onclick={() => n.markAsRead()}
 			>
 				{n.message}

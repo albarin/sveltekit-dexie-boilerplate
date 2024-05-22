@@ -40,6 +40,7 @@
 						email = '';
 					}}
 					disabled={!isEmailValid(email)}
+					title={$t('header.login.submit')}
 				>
 					{$t('header.login.submit')}
 				</Button>

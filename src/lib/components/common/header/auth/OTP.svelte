@@ -38,6 +38,7 @@
 						otp = '';
 					}}
 					disabled={!otp.length}
+					title={$t('header.otp.submit')}
 				>
 				{$t('header.otp.submit')}
 				</Button>

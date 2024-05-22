@@ -65,6 +65,7 @@
 						class={`text-white ${license?.button.color}`}
 						size="sm"
 						onclick={license?.button?.action}
+						title={license?.button?.label}
 					>
 						{license?.button?.label}
 					</Button>
