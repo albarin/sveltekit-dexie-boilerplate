@@ -3,6 +3,7 @@
   "theme_switcher.dark": "Switch to dark mode",
   "account.toggle_menu": "Toggle user menu",
   "account.menu_account": "Account",
+  "account.menu_preferences": "Preferences",
   "account.sign_in": "Sign in",
   "account.log_out": "Log out",
   "sync.syncing": "Syncing...",

@@ -1,6 +1,6 @@
 {
   "title": "Cuenta",
-  "button.close": "Cerrar",
+  "button.close": "Cerrar cuenta",
   "backup.title": "Copia de seguridad",
   "backup.description": "Descarga una copia de seguridad de tus datos.",
   "backup.last_backup": "Tu última copia de seguridad fue el día {{date}}",
