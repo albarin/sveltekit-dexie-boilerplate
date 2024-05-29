@@ -62,6 +62,20 @@ const config = ({
         await import('./lang/es/preferences.json')
       ).default,
     },
+    {
+      locale: 'en',
+      key: 'common',
+      loader: async () => (
+        await import('./lang/en/common.json')
+      ).default,
+    },
+    {
+      locale: 'es',
+      key: 'common',
+      loader: async () => (
+        await import('./lang/es/common.json')
+      ).default,
+    },
   ]
 });
 

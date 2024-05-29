@@ -1,0 +1,7 @@
+{
+  "update.dialog_title": "New update!",
+  "update.dialog_description_1": "There a new version of the app available.",
+  "update.dialog_description_2": "Do you want to update now?",
+  "update.dialog_cancel_button": "Cancel",
+  "update.dialog_update_button": "Update"
+}

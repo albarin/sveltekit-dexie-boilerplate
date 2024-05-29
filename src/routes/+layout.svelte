@@ -1,20 +1,18 @@
 <script lang="ts">
+	import UpdateDialog from '$lib/components/common/UpdateDialog.svelte';
 	import Header from '$lib/components/common/header/Header.svelte';
 	import Login from '$lib/components/common/header/auth/Login.svelte';
 	import OTP from '$lib/components/common/header/auth/OTP.svelte';
-	import { detectSWUpdate } from '$lib/updates';
 	import { ModeWatcher } from 'mode-watcher';
-	import { onMount } from 'svelte';
 	import '../app.css';
 
-	let { children } = $props();
-
-	onMount(() => {
-		detectSWUpdate();
-	});
+	let { children, data } = $props();
+	let { newVersionAvailable, serviceWorker } = data;
 </script>
 
 <ModeWatcher />
+
+<UpdateDialog {newVersionAvailable} {serviceWorker} />
 
 <div class="bg-muted/40">
 	<Header />

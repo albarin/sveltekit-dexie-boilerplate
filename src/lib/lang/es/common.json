@@ -1,0 +1,7 @@
+{
+  "update.dialog_title": "Actualización disponible",
+  "update.dialog_description_1": "Una nueva versión de la aplicación está disponible.",
+  "update.dialog_description_2": "¿Desea actualizar ahora?",
+  "update.dialog_cancel_button": "Cancelar",
+  "update.dialog_update_button": "Actualizar"
+}
