@@ -1,22 +1,18 @@
-export async function detectSWUpdate() {
+export async function detectSWUpdate(): Promise<ServiceWorker | undefined> {
   const registration = await navigator.serviceWorker.ready;
 
   if (registration?.waiting) {
-    if (confirm('A new app version is available. Reload to update?')) {
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      window.location.reload();
-    }
+    return registration.waiting;
   }
 
   registration.addEventListener('updatefound', () => {
     const newSW = registration?.installing;
     newSW?.addEventListener('statechange', async () => {
       if (newSW.state === 'installed') {
-        if (confirm('A new app version is available. Reload to update?')) {
-          newSW.postMessage({ type: 'SKIP_WAITING' });
-          window.location.reload();
-        }
+        return newSW;
       }
     });
   });
+
+  return undefined;
 }
