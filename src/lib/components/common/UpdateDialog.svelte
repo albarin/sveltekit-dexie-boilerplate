@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { t } from '$lib/translations';
+	import { checkPermission, requestNotificationPermission, sendNotification } from '$lib/updates';
 
 	interface Props {
 		newVersionAvailable: boolean;
@@ -14,6 +15,10 @@
 		serviceWorker?.postMessage({ type: 'SKIP_WAITING' });
 		location.reload();
 	};
+
+	checkPermission();
+	requestNotificationPermission();
+	sendNotification();
 </script>
 
 <AlertDialog.Root open={newVersionAvailable}>
