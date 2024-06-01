@@ -1,9 +1,9 @@
 import dexie from "$lib/dexie";
 
 export const DELETE = async ({ params }) => {
-  const email = params?.email;
+  const id = params?.id;
 
-  await dexie.deleteSubscriptions(email);
+  await dexie.deleteSubscription(id);
 
   return new Response();
 }

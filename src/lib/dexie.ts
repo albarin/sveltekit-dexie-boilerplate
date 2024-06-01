@@ -75,6 +75,7 @@ const createSubscription = async (subscription: PushSubscription) => {
     });
 
     if (!response.ok) {
+      console.log({ subscription })
       console.error(`Failed to create subscription, status: ${response.status}`);
       return null;
     }
@@ -113,35 +114,8 @@ const deleteSubscription = async (id: string) => {
   }
 }
 
-const deleteSubscriptions = async (email: string) => {
-  const token = await getToken();
-  if (!token) {
-    return;
-  }
-
-  const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions?user=${email}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    console.error(`Failed to delete subscriptions, status: ${response.status}`);
-    return;
-  }
-
-  const subscriptions = await response.json();
-  for (const subscription of subscriptions) {
-    await deleteSubscription(subscription.id);
-  }
-
-  return;
-}
-
 export default {
   getSubscriptions,
   createSubscription,
-  deleteSubscriptions,
+  deleteSubscription,
 }
