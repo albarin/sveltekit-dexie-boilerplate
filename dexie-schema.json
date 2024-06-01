@@ -1,0 +1,13 @@
+{
+  "schema": {
+    "roles": "[realmId+name]",
+    "realms": "@realmId",
+    "members": "@id",
+    "settings": "@id",
+    "notifications": "@id",
+    "$$logins": "claims.sub",
+    "$$baseRevs": "[tableName+clientRev]",
+    "subscriptions": "id"
+  },
+  "sealed": false
+}
