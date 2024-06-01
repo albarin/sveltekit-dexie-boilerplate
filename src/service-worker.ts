@@ -85,3 +85,14 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('push', (event: PushEvent) => {
+  const payload = event?.data?.text();
+
+  const registration = self.registration;
+  event.waitUntil(
+    registration.showNotification(import.meta.env.VITE_APP_NAME, {
+      body: payload,
+    })
+  );
+});
