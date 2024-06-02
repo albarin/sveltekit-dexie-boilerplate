@@ -35,6 +35,11 @@ export async function subscribe(user: string | undefined): Promise<PushSubscript
     return null;
   }
 
+  const permission = await Notification.requestPermission();
+  if (permission !== 'granted') {
+    return null;
+  }
+
   const vapidKey = await getVapidKey();
 
   const registration = await navigator.serviceWorker.ready;
@@ -63,7 +68,7 @@ export async function subscribe(user: string | undefined): Promise<PushSubscript
 
     return subscription;
   } catch (err) {
-    console.log('Error fetching vapid key: ', err);
+    console.error('Error fetching vapid key: ', err);
   }
 
   return null;

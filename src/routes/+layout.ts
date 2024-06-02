@@ -1,5 +1,4 @@
 import { Setting } from '$lib/db';
-import { getSubscription } from '$lib/notifications';
 import { browserLocale, loadTranslations } from '$lib/translations';
 import { detectSWUpdate } from '$lib/updates';
 import type { Load } from '@sveltejs/kit';
@@ -14,10 +13,7 @@ export const load: Load = async ({ url }) => {
 
   const serviceWorker = await detectSWUpdate();
 
-  let subscription = await getSubscription();
-
   return {
-    subscription,
     serviceWorker,
     newVersionAvailable: !!serviceWorker
   };

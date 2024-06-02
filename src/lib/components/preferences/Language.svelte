@@ -4,7 +4,6 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Setting } from '$lib/db';
 	import { browserLocale, t } from '$lib/translations';
-	import type { Selected } from 'bits-ui';
 	import { liveQuery } from 'dexie';
 
 	let language = liveQuery(() => Setting.get('language'));

@@ -75,7 +75,6 @@ const createSubscription = async (subscription: PushSubscription) => {
     });
 
     if (!response.ok) {
-      console.log({ subscription })
       console.error(`Failed to create subscription, status: ${response.status}`);
       return null;
     }

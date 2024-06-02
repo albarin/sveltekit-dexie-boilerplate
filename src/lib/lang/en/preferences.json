@@ -2,5 +2,10 @@
   "title": "Preferences",
   "button.close": "Close preferences",
   "language.title": "Language",
-  "language.description": "Choose your preferred language."
+  "language.description": "Choose your preferred language.",
+  "notifications.title": "Notifications",
+  "notifications.description": "Enable or disable notifications.",
+  "notifications.switch_label": "Receive notificacions",
+  "notifications.no_permission_1": "You have blocked notifications.",
+  "notifications.no_permission_2": "Please enable them in your browser settings."
 }
