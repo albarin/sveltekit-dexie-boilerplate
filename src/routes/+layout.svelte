@@ -7,12 +7,11 @@
 	import '../app.css';
 
 	let { children, data } = $props();
-	let { newVersionAvailable, serviceWorker } = data;
 </script>
 
 <ModeWatcher />
 
-<UpdateDialog {newVersionAvailable} {serviceWorker} />
+<UpdateDialog newVersionAvailable={data.newVersionAvailable} serviceWorker={data.serviceWorker} />
 
 <div class="bg-muted/40">
 	<Header />

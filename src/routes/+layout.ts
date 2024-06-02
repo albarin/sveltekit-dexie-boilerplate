@@ -19,7 +19,7 @@ export const load: Load = async ({ url }) => {
   };
 }
 
-const language = async (): Promise<string> => {
+async function language() {
   const userLanguage = await Setting.get('language');
   if (userLanguage) {
     return userLanguage.value.toString();

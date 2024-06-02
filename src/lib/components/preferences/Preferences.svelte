@@ -4,6 +4,7 @@
 	import { t } from '$lib/translations';
 	import CloseButton from '../common/CloseButton.svelte';
 	import Language from './Language.svelte';
+	import Notifications from './Notifications.svelte';
 
 	let { open = $bindable() }: { open: boolean } = $props();
 </script>
@@ -18,6 +19,8 @@
 		</Sheet.Header>
 
 		<Language />
+
+		<Notifications />
 	</Sheet.Content>
 </Sheet.Root>
 

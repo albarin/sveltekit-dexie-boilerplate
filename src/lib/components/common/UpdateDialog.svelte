@@ -10,7 +10,6 @@
 	let { newVersionAvailable, serviceWorker }: Props = $props();
 
 	const update = () => {
-		console.log('update');
 		serviceWorker?.postMessage({ type: 'SKIP_WAITING' });
 		location.reload();
 	};
