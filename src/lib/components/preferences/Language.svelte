@@ -6,10 +6,12 @@
 	import { browserLocale, t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 
-	let language = liveQuery(() => Setting.get('language'));
+	let language = liveQuery(() => Setting.getByKey('language'));
 
 	let selectedLanguage = $state($language?.value || browserLocale);
 	$effect(() => {
+		// This would be normally done with $derived but it's necessary because
+		// selectedLanguage is a binded  and derived state cannot be binded
 		selectedLanguage = $language?.value || browserLocale;
 	});
 
@@ -25,11 +27,11 @@
 			return;
 		}
 
-		if ($language) {
-			Setting.update($language, { value: selected.value });
-		} else {
-			Setting.create('language', selected.value);
-		}
+		Setting.update({
+			...$language,
+			key: 'language',
+			value: selected.value
+		} as Setting);
 
 		invalidateAll();
 	};

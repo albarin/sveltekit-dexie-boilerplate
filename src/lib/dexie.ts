@@ -30,6 +30,33 @@ const getToken = async () => {
   }
 }
 
+const getAllSubscriptions = async () => {
+  const token = await getToken();
+  if (!token) {
+    return [];
+  }
+
+  try {
+    const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Failed to get subscriptions, status: ${response.status}`);
+      return [];
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error(`Exception while getting subscriptions: ${error}`);
+    return [];
+  }
+}
+
 const getSubscriptions = async (user: string) => {
   const token = await getToken();
   if (!token) {
@@ -115,6 +142,7 @@ const deleteSubscription = async (id: string) => {
 
 export default {
   getSubscriptions,
+  getAllSubscriptions,
   createSubscription,
   deleteSubscription,
 }

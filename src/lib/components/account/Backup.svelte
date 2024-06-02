@@ -7,8 +7,8 @@
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 
-	let backup = liveQuery(() => Setting.get('last_backup'));
-	let language = liveQuery(() => Setting.get('language'));
+	let backup = liveQuery(() => Setting.getByKey('last_backup'));
+	let language = liveQuery(() => Setting.getByKey('language'));
 
 	const download = async () => {
 		const tablesData = await Promise.all(
@@ -30,11 +30,11 @@
 		document.body.removeChild(link);
 		URL.revokeObjectURL(url);
 
-		if ($backup) {
-			Setting.update($backup, { value: new Date().toISOString() });
-		} else {
-			Setting.create('last_backup', new Date().toISOString());
-		}
+		Setting.update({
+			...$backup,
+			key: 'last_backup',
+			value: new Date().toISOString()
+		} as Setting);
 	};
 </script>
 

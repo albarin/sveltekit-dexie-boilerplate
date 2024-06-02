@@ -41,15 +41,19 @@ export class Setting {
     this.updated_at = new Date().toISOString();
   }
 
-  static create(key: string, value: string) {
+  static async create(key: string, value: string) {
     const setting = new Setting(key, value);
-    setting.save();
+    await setting.save();
 
     return setting;
   }
 
-  static async get(key: string) {
-    return db.settings.get({ key })
+  static async get(id: string) {
+    return db.settings.get({ id })
+  }
+
+  static async getByKey(key: string) {
+    return await db.settings.where({ key }).first();
   }
 
   async save() {
@@ -60,12 +64,12 @@ export class Setting {
     }
   }
 
-  static async update(setting: Setting, changes) {
+  static async update(setting: Setting) {
     try {
       await db.settings.put({
         ...setting,
-        ...changes,
-      });
+        updated_at: new Date().toISOString(),
+      } as Setting);
     } catch (e) {
       alert(`Failed to update setting: ${e}`);
     }

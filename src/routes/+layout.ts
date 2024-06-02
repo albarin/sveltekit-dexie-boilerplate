@@ -20,7 +20,8 @@ export const load: Load = async ({ url }) => {
 }
 
 async function language() {
-  const userLanguage = await Setting.get('language');
+  const userLanguage = await Setting.getByKey('language');
+
   if (userLanguage) {
     return userLanguage.value.toString();
   }
