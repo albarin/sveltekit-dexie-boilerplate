@@ -57,7 +57,7 @@
 
 {#if !licenseIsValid($user.license)}
 	<HoverCard.Root>
-		<HoverCard.Trigger>
+		<HoverCard.Trigger href="/account">
 			<Badge
 				class={`flex-1 justify-center font-normal text-sm ${license?.color} ${license?.hoverColor}`}
 			>
