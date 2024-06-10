@@ -7,5 +7,8 @@
   "expired.button": "Renueva tu licencia",
   "trial.label": "Prueba gratuita",
   "trial.content": "Tu prueba gratis acaba en {{days}} días. Pásate a premium para continuar usando la aplicación y acceder a las funcionalidades premium.",
-  "trial.button": "Pásate a premium"
+  "trial.button": "Pásate a premium",
+  "valid.label": "Premium",
+  "valid.content": "¡Te quedan {{days}} días de premium!",
+  "valid.button": "¡Renuévala!"
 }

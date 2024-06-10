@@ -7,5 +7,8 @@
   "expired.button": "Renew your license",
   "trial.label": "Free trial",
   "trial.content": "Your free trial ends in {{days}} days. Upgrade to continue using the app and access premium features.",
-  "trial.button": "Upgrade now!"
+  "trial.button": "Upgrade now!",
+  "valid.label": "Premium",
+  "valid.content": "You have {{days}} days left of premium license.",
+  "valid.button": "Renew it now!"
 }

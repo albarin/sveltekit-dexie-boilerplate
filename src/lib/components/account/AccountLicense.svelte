@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { licenseIsEval } from './../../license.ts';
 	import { inSync, login } from '$lib/auth';
 	import * as Alert from '$lib/components/ui/alert';
 	import { Button } from '$lib/components/ui/button';
@@ -39,10 +40,10 @@
 		}
 
 		let licenseExpiresInDays = licenseDaysLeft($user.license);
-		if (licenseExpiresInDays) {
+		if (licenseIsEval($user.license)) {
 			return {
 				label: $t('license.trial.label'),
-				content: $t('license.trial.content'),
+				content: $t('license.trial.content', { days: licenseExpiresInDays }),
 				button: {
 					label: $t('license.trial.button'),
 					action: () => console.log('Upgrade now'),
@@ -51,10 +52,23 @@
 				color: 'text-amber-600 border-amber-600 bg-amber-50'
 			};
 		}
+
+		if (licenseExpiresInDays) {
+			return {
+				label: $t('license.valid.label'),
+				content: $t('license.valid.content', { days: licenseExpiresInDays }),
+				button: {
+					label: $t('license.valid.button'),
+					action: () => console.log('Renew your license'),
+					color: 'bg-emerald-600 hover:bg-emerald-500'
+				},
+				color: 'text-emerald-600 border-emerald-600 bg-emerald-50'
+			};
+		}
 	});
 </script>
 
-{#if synced && !licenseIsValid($user.license)}
+{#if synced && license}
 	<Section.Root>
 		<Section.Content>
 			<Alert.Root class={`px-5 pt-4 pb-5 text-sm ${license?.color}`}>
