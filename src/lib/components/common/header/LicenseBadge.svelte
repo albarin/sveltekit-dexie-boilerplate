@@ -4,7 +4,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card';
 	import { db } from '$lib/db';
-	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
+	import { licenseDaysLeft, licenseIsEval, licenseIsExpired } from '$lib/license';
 	import { t } from '$lib/translations';
 
 	const user = db.cloud.currentUser;
@@ -39,10 +39,10 @@
 		}
 
 		let licenseExpiresInDays = licenseDaysLeft($user.license);
-		if (licenseExpiresInDays) {
+		if (licenseIsEval($user.license)) {
 			return {
 				label: $t('license.trial.label'),
-				content: $t('license.trial.content'),
+				content: $t('license.trial.content', { days: licenseExpiresInDays }),
 				button: {
 					label: $t('license.trial.button'),
 					action: () => console.log('Upgrade now'),
@@ -52,10 +52,24 @@
 				hoverColor: 'hover:bg-amber-500 dark:hover:bg-amber-600'
 			};
 		}
+
+		if (licenseExpiresInDays) {
+			return {
+				label: $t('license.valid.label'),
+				content: $t('license.valid.content', { days: licenseExpiresInDays }),
+				button: {
+					label: $t('license.valid.button'),
+					action: () => console.log('Renew your license'),
+					color: 'bg-emerald-600 hover:bg-emerald-500'
+				},
+				color: 'text-emerald-100 bg-emerald-600 dark:bg-emerald-700',
+				hoverColor: 'hover:bg-emerald-500 dark:hover:bg-emerald-600'
+			};
+		}
 	});
 </script>
 
-{#if !licenseIsValid($user.license)}
+{#if license}
 	<HoverCard.Root>
 		<HoverCard.Trigger href="/account">
 			<Badge

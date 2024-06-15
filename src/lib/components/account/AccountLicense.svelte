@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { licenseIsEval } from './../../license.ts';
 	import { inSync, login } from '$lib/auth';
 	import * as Alert from '$lib/components/ui/alert';
 	import { Button } from '$lib/components/ui/button';
 	import * as Section from '$lib/components/ui/section';
 	import { db } from '$lib/db';
-	import { licenseDaysLeft, licenseIsExpired, licenseIsValid } from '$lib/license';
+	import { licenseDaysLeft, licenseIsEval, licenseIsExpired } from '$lib/license';
 	import { t } from '$lib/translations';
 
 	const user = db.cloud.currentUser;
