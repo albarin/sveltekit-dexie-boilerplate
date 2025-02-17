@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { pushState } from '$app/navigation';
 	import { login, logout } from '$lib/auth';
 	import Account from '$lib/components/account/Account.svelte';
 	import Preferences from '$lib/components/preferences/Preferences.svelte';
@@ -31,21 +30,11 @@
 		{/if}
 		<DropdownMenu.Separator />
 
-		<DropdownMenu.Item
-			onclick={() => {
-				pushState('/account', {});
-				openAccount = true;
-			}}
-		>
+		<DropdownMenu.Item href="/account">
 			{$t('header.account.menu_account')}
 		</DropdownMenu.Item>
 
-		<DropdownMenu.Item
-			onclick={() => {
-				pushState('/preferences', {});
-				openPreferences = true;
-			}}
-		>
+		<DropdownMenu.Item href="/preferences">
 			{$t('header.account.menu_preferences')}
 		</DropdownMenu.Item>
 
