@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import * as Sheet from '$lib/components/ui/sheet';
+	import { db } from '$lib/db';
 	import { t } from '$lib/translations';
 	import CloseButton from '../common/CloseButton.svelte';
 	import Language from './Language.svelte';

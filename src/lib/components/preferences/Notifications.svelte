@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { login } from '$lib/auth';
+	import * as Alert from '$lib/components/ui/alert';
+	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
 	import * as Section from '$lib/components/ui/section';
 	import { Switch } from '$lib/components/ui/switch';
@@ -28,25 +31,39 @@
 	<Section.Header>
 		<Section.Title>{$t('preferences.notifications.title')}</Section.Title>
 		<Section.Description>
-			{$t('preferences.notifications.description')}
+			{#if !$user.isLoggedIn}
+				<button class="font-semibold hover:underline" onclick={login}>
+					{$t('preferences.notifications.logged_out.button')}
+				</button>
+
+				{$t('preferences.notifications.logged_out.description')}
+			{:else}
+				{$t('preferences.notifications.description')}
+			{/if}
 		</Section.Description>
 	</Section.Header>
-	<Section.Content>
-		<div class="space-y-2">
-			<div class="flex items-center gap-2">
-				<Switch
-					bind:checked
-					disabled={Notification.permission === 'denied'}
-					onCheckedChange={handleChange}
-				/>
-				<Label>{$t('preferences.notifications.switch_label')}</Label>
-			</div>
-			{#if Notification.permission === 'denied'}
-				<div>
-					<p class="text-sm text-destructive">{$t('preferences.notifications.no_permission_1')}</p>
-					<p class="text-sm text-destructive">{$t('preferences.notifications.no_permission_2')}</p>
+	{#if $user.isLoggedIn}
+		<Section.Content>
+			<div class="space-y-2">
+				<div class="flex items-center gap-2">
+					<Switch
+						bind:checked
+						disabled={Notification.permission === 'denied' || !$user.isLoggedIn}
+						onCheckedChange={handleChange}
+					/>
+					<Label>{$t('preferences.notifications.switch_label')}</Label>
 				</div>
-			{/if}
-		</div>
-	</Section.Content>
+				{#if Notification.permission === 'denied'}
+					<div>
+						<p class="text-sm text-destructive">
+							{$t('preferences.notifications.no_permission_1')}
+						</p>
+						<p class="text-sm text-destructive">
+							{$t('preferences.notifications.no_permission_2')}
+						</p>
+					</div>
+				{/if}
+			</div>
+		</Section.Content>
+	{/if}
 </Section.Root>

@@ -7,5 +7,7 @@
   "notifications.description": "Enable or disable notifications.",
   "notifications.switch_label": "Receive notificacions",
   "notifications.no_permission_1": "You have blocked notifications.",
-  "notifications.no_permission_2": "Please enable them in your browser settings."
+  "notifications.no_permission_2": "Please enable them in your browser settings.",
+  "notifications.logged_out.button": "Log in",
+  "notifications.logged_out.description": "to enable notifications."
 }
