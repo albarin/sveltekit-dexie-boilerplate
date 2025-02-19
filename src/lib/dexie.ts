@@ -57,7 +57,7 @@ const getAllSubscriptions = async () => {
   }
 }
 
-const getSubscriptions = async (user: string) => {
+const getSubscription = async (user: string) => {
   const token = await getToken();
   if (!token) {
     return [];
@@ -141,7 +141,7 @@ const deleteSubscription = async (id: string) => {
 }
 
 export default {
-  getSubscriptions,
+  getSubscription,
   getAllSubscriptions,
   createSubscription,
   deleteSubscription,

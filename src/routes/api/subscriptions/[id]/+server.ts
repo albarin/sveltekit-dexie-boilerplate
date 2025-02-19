@@ -1,5 +1,13 @@
 import dexie from "$lib/dexie";
 
+export const GET = async ({ params }) => {
+  const id = params?.id;
+
+  const subscription = await dexie.getSubscription(id);
+
+  return new Response(JSON.stringify(subscription));
+}
+
 export const DELETE = async ({ params }) => {
   const id = params?.id;
 
