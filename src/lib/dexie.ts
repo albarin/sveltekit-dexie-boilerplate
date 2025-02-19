@@ -77,7 +77,12 @@ const getSubscription = async (user: string) => {
       return [];
     }
 
-    return response.json();
+    const data = await response.json();
+    if (data.length > 0) {
+      return data[0];
+    }
+
+    return data;
   }
   catch (error) {
     console.error(`Exception while getting subscriptions: ${error}`);
