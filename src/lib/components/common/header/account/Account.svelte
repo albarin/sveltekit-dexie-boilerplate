@@ -30,11 +30,15 @@
 		{/if}
 		<DropdownMenu.Separator />
 
-		<DropdownMenu.Item href="/account">
+		<DropdownMenu.Item onclick={() => (openAccount = true)}>
 			{$t('header.account.menu_account')}
 		</DropdownMenu.Item>
 
-		<DropdownMenu.Item href="/preferences">
+		<DropdownMenu.Item
+			onclick={() => {
+				openPreferences = true;
+			}}
+		>
 			{$t('header.account.menu_preferences')}
 		</DropdownMenu.Item>
 
@@ -44,5 +48,9 @@
 	</DropdownMenu.Content>
 </DropdownMenu.Root>
 
-<Account bind:open={openAccount} />
-<Preferences bind:open={openPreferences} />
+{#if openAccount}
+	<Account bind:open={openAccount} />
+{/if}
+{#if openPreferences}
+	<Preferences bind:open={openPreferences} />
+{/if}

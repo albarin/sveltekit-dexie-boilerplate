@@ -2,14 +2,14 @@
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { login } from '$lib/auth';
-	import * as Alert from '$lib/components/ui/alert';
-	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
 	import * as Section from '$lib/components/ui/section';
 	import { Switch } from '$lib/components/ui/switch';
 	import { db } from '$lib/db';
 	import { subscribe, unsubscribe } from '$lib/notifications';
 	import { t } from '$lib/translations';
+
+	let { open = $bindable() }: { open: boolean } = $props();
 
 	let user = db.cloud.currentUser;
 	let checked = $state(!!$page.data.subscription);
@@ -32,7 +32,13 @@
 		<Section.Title>{$t('preferences.notifications.title')}</Section.Title>
 		<Section.Description>
 			{#if !$user.isLoggedIn}
-				<button class="font-semibold hover:underline" onclick={login}>
+				<button
+					class="font-semibold hover:underline"
+					onclick={() => {
+						open = false;
+						login();
+					}}
+				>
 					{$t('preferences.notifications.logged_out.button')}
 				</button>
 

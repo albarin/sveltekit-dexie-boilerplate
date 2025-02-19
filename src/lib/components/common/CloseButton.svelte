@@ -7,7 +7,6 @@
 
 	const close = () => {
 		open = false;
-		history.back();
 	};
 </script>
 
