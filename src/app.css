@@ -98,3 +98,7 @@
 .lucide {
 	stroke-width: 1.2px;
 }
+
+button, [role=button] {
+	cursor: pointer;
+}
