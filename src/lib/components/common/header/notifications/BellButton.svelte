@@ -22,7 +22,7 @@
 </script>
 
 <Button
-	class={`relative ${open ? 'pointer-events-none' : ''}`}
+	class={`[&_svg]:size-5 relative ${open ? 'pointer-events-none' : ''}`}
 	size="icon"
 	variant="ghost"
 	{title}

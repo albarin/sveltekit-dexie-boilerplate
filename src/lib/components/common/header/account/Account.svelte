@@ -16,7 +16,7 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
-		<Button variant="ghost" size="icon" title={$t('header.account.toggle_menu')}>
+		<Button class="[&_svg]:size-5" variant="ghost" size="icon" title={$t('header.account.toggle_menu')}>
 			<Avatar />
 			<span class="sr-only">{$t('header.account.toggle_menu')}</span>
 		</Button>
