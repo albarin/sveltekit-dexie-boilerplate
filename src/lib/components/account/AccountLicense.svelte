@@ -7,6 +7,8 @@
 	import { licenseDaysLeft, licenseIsEval, licenseIsExpired } from '$lib/license';
 	import { t } from '$lib/translations';
 
+	let { open = $bindable() }: { open: boolean } = $props();
+
 	const user = db.cloud.currentUser;
 	const syncState = db.cloud.syncState;
 	const synced = $derived(inSync($syncState));
@@ -18,7 +20,10 @@
 				content: $t('license.offline.content'),
 				button: {
 					label: $t('license.offline.button'),
-					action: login,
+					action: () => {
+						open = false;
+						login();
+					},
 					color: 'bg-gray-500'
 				},
 				color: 'text-gray-500 border-gray-500 bg-gray-50'

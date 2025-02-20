@@ -19,7 +19,7 @@
 			<Separator />
 		</Sheet.Header>
 
-		<LicenseStatus />
+		<LicenseStatus bind:open />
 		<Backup />
 		<Import />
 	</Sheet.Content>
