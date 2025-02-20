@@ -53,7 +53,7 @@
 		</Section.Description>
 	</Section.Header>
 	<Section.Content>
-		<Button size="sm" on:click={download} title={$t('account.backup.download')}>
+		<Button size="sm" onclick={download} title={$t('account.backup.download')}>
 			{$t('account.backup.download')}
 		</Button>
 	</Section.Content>

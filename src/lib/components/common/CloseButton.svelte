@@ -15,7 +15,7 @@
 		size="icon"
 		variant="link"
 		class="visible"
-		on:click={close}
+		onclick={close}
 		title={$t('preferences.button.close')}
 	>
 		<X />

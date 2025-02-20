@@ -9,28 +9,24 @@
 	let language = liveQuery(() => Setting.getByKey('language'));
 
 	let selectedLanguage = $state($language?.value || browserLocale);
-	$effect(() => {
-		// This would be normally done with $derived but it's necessary because
-		// selectedLanguage is a binded  and derived state cannot be binded
-		selectedLanguage = $language?.value || browserLocale;
-	});
 
-	const languages: Record<string, string> = {
-		en: 'English',
-		es: 'Español'
-	};
+	const languages = [
+		{ value: 'es', label: 'Español' },
+		{ value: 'en', label: 'English' }
+	];
+	const triggerContent = $derived(
+		languages.find((l) => l.value === selectedLanguage)?.label ?? 'Select a language'
+	);
 
-	const updateLanguage = async (
-		selected: { value: string; label: string; disabled: boolean } | undefined
-	) => {
-		if (!selected) {
+	const updateLanguage = async (value: string) => {
+		if (!value) {
 			return;
 		}
 
 		Setting.update({
 			...$language,
 			key: 'language',
-			value: selected.value
+			value
 		} as Setting);
 
 		invalidateAll();
@@ -45,16 +41,16 @@
 		</Section.Description>
 	</Section.Header>
 	<Section.Content>
-		<Select.Root bind:selected={selectedLanguage} onSelectedChange={updateLanguage}>
-			<Select.Trigger class="w-48">
-				<Select.Value placeholder={languages[selectedLanguage]} />
+		<Select.Root type="single" bind:value={selectedLanguage} onValueChange={updateLanguage}>
+			<Select.Trigger class="w-[180px]">
+				{triggerContent}
 			</Select.Trigger>
 			<Select.Content>
-				{#each Object.keys(languages) as language}
-					<Select.Item value={language} label={languages[language]}>
-						{languages[language]}
-					</Select.Item>
-				{/each}
+				<Select.Group>
+					{#each languages as fruit}
+						<Select.Item value={fruit.value} label={fruit.label}>{fruit.label}</Select.Item>
+					{/each}
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 	</Section.Content>

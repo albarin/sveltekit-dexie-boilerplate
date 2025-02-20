@@ -6,5 +6,7 @@
   "notifications.title": "Notificaciones",
   "notifications.description": "Activa o desactiva las notificaciones.",
   "notifications.switch_label": "Recibir notificaciones",
-  "notifications.no_permission": "Has bloqueado las notificaciones. Por favor, habilítalas en la configuración de tu navegador."
+  "notifications.no_permission": "Has bloqueado las notificaciones. Por favor, habilítalas en la configuración de tu navegador.",
+  "notifications.logged_out.button": "Inicia sesión",
+  "notifications.logged_out.description": "para activar las notificaciones."
 }

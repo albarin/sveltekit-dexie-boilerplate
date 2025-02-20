@@ -39,7 +39,7 @@
 						variant="ghost"
 						class=""
 						title={$t('header.notifications.header.button.mark_all_as_read')}
-						on:click={markAllAsRead}
+						onclick={markAllAsRead}
 					>
 						<MailCheck size="15" />
 					</Button>
@@ -49,7 +49,7 @@
 					size="icon"
 					variant="ghost"
 					title={$t('header.notifications.header.button.delete_all')}
-					on:click={deleteAll}
+					onclick={deleteAll}
 				>
 					<Trash size="15" />
 				</Button>

@@ -26,7 +26,7 @@
 	size="icon"
 	variant="ghost"
 	{title}
-	on:click={() => (open = true)}
+	onclick={() => (open = true)}
 >
 	<Bell />
 	{#if unreadCount > 0}
