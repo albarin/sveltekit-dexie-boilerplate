@@ -1,4 +1,5 @@
 import { DEXIE_CLIENT_ID, DEXIE_CLIENT_SECRET, DEXIE_CLOUD_URL } from "$env/static/private";
+import type { PushSubscription } from "web-push";
 
 const getToken = async () => {
   try {
@@ -57,10 +58,10 @@ const getAllSubscriptions = async () => {
   }
 }
 
-const getSubscription = async (user: string) => {
+const getSubscription = async (user: string): Promise<PushSubscription | null> => {
   const token = await getToken();
   if (!token) {
-    return [];
+    return null;
   }
 
   try {
@@ -74,19 +75,19 @@ const getSubscription = async (user: string) => {
 
     if (!response.ok) {
       console.error(`Failed to get subscriptions, status: ${response.status}`);
-      return [];
+      return null;
     }
 
     const data = await response.json();
-    if (data.length > 0) {
-      return data[0];
+    if (data.length === 0) {
+      return null;
     }
 
-    return data;
+    return data[0];
   }
   catch (error) {
-    console.error(`Exception while getting subscriptions: ${error}`);
-    return [];
+    console.error(`Exception while getting subscription: ${error}`);
+    return null;
   }
 };
 

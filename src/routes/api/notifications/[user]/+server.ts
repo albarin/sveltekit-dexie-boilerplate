@@ -1,6 +1,9 @@
+import { CONTACT_EMAIL, VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from '$env/static/private';
 import dexie from '$lib/dexie';
 import { type RequestEvent } from '@sveltejs/kit';
 import webpush, { WebPushError } from 'web-push';
+
+webpush.setVapidDetails(`mailto:${CONTACT_EMAIL}`, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 
 export const POST = async ({ params, request }: RequestEvent) => {
     const user = params?.user;
