@@ -10,8 +10,13 @@
 	let { newVersionAvailable, serviceWorker }: Props = $props();
 
 	const update = () => {
-		serviceWorker?.postMessage({ type: 'SKIP_WAITING' });
-		location.reload();
+		if (!serviceWorker) return;
+
+		serviceWorker.postMessage({ type: 'SKIP_WAITING' });
+
+		navigator.serviceWorker.addEventListener('controllerchange', () => {
+			location.reload();
+		});
 	};
 </script>
 
@@ -26,9 +31,9 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>{$t('common.update.dialog_cancel_button')}</AlertDialog.Cancel>
-			<AlertDialog.Action onclick={update}
-				>{$t('common.update.dialog_update_button')}</AlertDialog.Action
-			>
+			<AlertDialog.Action onclick={update}>
+				{$t('common.update.dialog_update_button')}
+			</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>
