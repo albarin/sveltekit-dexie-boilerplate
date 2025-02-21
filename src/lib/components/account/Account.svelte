@@ -24,9 +24,3 @@
 		<Import />
 	</Sheet.Content>
 </Sheet.Root>
-
-<style>
-	:global(.account button[data-dialog-close]) {
-		visibility: hidden;
-	}
-</style>

@@ -23,9 +23,3 @@
 		<Notifications bind:open />
 	</Sheet.Content>
 </Sheet.Root>
-
-<style>
-	:global(.preferences button[data-dialog-close]) {
-		visibility: hidden;
-	}
-</style>
