@@ -11,7 +11,9 @@ const getToken = async () => {
       body: JSON.stringify({
         grant_type: 'client_credentials',
         scopes: [
-          'ACCESS_DB'
+          'GLOBAL_READ',
+          'GLOBAL_WRITE',
+          'ACCESS_DB',
         ],
         client_id: DEXIE_CLIENT_ID,
         client_secret: DEXIE_CLIENT_SECRET,
@@ -146,9 +148,47 @@ const deleteSubscription = async (id: string) => {
   }
 }
 
+const createNotification = async (user: string, message: string) => {
+  const token = await getToken();
+  if (!token) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${DEXIE_CLOUD_URL}/all/notifications`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        message,
+        read: false,
+        owner: user,
+        realmId: user,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      }),
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`Failed to create notification, status: ${response.status}, response: ${text}`);
+
+      return null;
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error(`Exception while creating notification: ${error}`);
+    return null;
+  }
+}
+
 export default {
   getSubscription,
   getAllSubscriptions,
   createSubscription,
   deleteSubscription,
+  createNotification,
 }
