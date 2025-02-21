@@ -6,8 +6,7 @@
 	import { db } from '$lib/db';
 	import { licenseDaysLeft, licenseIsEval, licenseIsExpired } from '$lib/license';
 	import { t } from '$lib/translations';
-
-	let { open = $bindable() }: { open: boolean } = $props();
+	import { closeSettings } from '$lib/utils';
 
 	const user = db.cloud.currentUser;
 	const syncState = db.cloud.syncState;
@@ -21,7 +20,7 @@
 				button: {
 					label: $t('license.offline.button'),
 					action: () => {
-						open = false;
+						closeSettings();
 						login();
 					},
 					color: 'bg-gray-500'

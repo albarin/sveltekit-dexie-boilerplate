@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { t } from '$lib/translations';
 	import Account from './account/Account.svelte';
 	import LicenseBadge from './LicenseBadge.svelte';
 	import Logo from './Logo.svelte';
+	import Notifications from './notifications/BellButton.svelte';
 	import SyncStatus from './SyncStatus.svelte';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
-	import Notifications from './notifications/BellButton.svelte';
-	import { browser } from '$app/environment';
-	import { t } from '$lib/translations';
 
 	let isOnline = $state(browser ? navigator.onLine : true);
 </script>

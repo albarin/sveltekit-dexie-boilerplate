@@ -2,6 +2,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
+import { page } from "$app/state";
+import { goto } from "$app/navigation";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -65,3 +67,13 @@ export const isEmailValid = (email: string): boolean => {
 	const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	return regex.test(email);
 };
+
+export const openSettings = (settings: string) => {
+	page.url.searchParams.set('settings', settings);
+	goto(page.url, { invalidateAll: true });
+}
+
+export const closeSettings = () => {
+	page.url.searchParams.delete('settings');
+	goto(page.url, { invalidateAll: true });
+}

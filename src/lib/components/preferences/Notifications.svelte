@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { login } from '$lib/auth';
 	import { Label } from '$lib/components/ui/label';
 	import * as Section from '$lib/components/ui/section';
@@ -8,11 +8,10 @@
 	import { db } from '$lib/db';
 	import { subscribe, unsubscribe } from '$lib/notifications';
 	import { t } from '$lib/translations';
-
-	let { open = $bindable() }: { open: boolean } = $props();
+	import { closeSettings } from '$lib/utils';
 
 	let user = db.cloud.currentUser;
-	let checked = $state(!!$page.data.subscription);
+	let checked = $state(!!page.data.subscription);
 
 	const handleChange = async (newValue: boolean) => {
 		if (checked) {
@@ -36,7 +35,7 @@
 				<button
 					class="font-semibold hover:underline"
 					onclick={() => {
-						open = false;
+						closeSettings();
 						login();
 					}}
 				>

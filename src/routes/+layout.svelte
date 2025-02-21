@@ -1,8 +1,10 @@
 <script lang="ts">
+	import Account from '$lib/components/account/Account.svelte';
 	import UpdateDialog from '$lib/components/common/UpdateDialog.svelte';
 	import Header from '$lib/components/common/header/Header.svelte';
 	import Login from '$lib/components/common/header/auth/Login.svelte';
 	import OTP from '$lib/components/common/header/auth/OTP.svelte';
+	import Preferences from '$lib/components/preferences/Preferences.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
 
@@ -29,3 +31,7 @@
 
 <Login />
 <OTP />
+
+
+<Account />
+<Preferences />
