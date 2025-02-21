@@ -9,6 +9,10 @@
 	let { children, data } = $props();
 </script>
 
+<svelte:head>
+	<title>Sveltekit Dexie Boilerplate</title>
+</svelte:head>
+
 <ModeWatcher />
 
 <UpdateDialog newVersionAvailable={data.newVersionAvailable} serviceWorker={data.serviceWorker} />
