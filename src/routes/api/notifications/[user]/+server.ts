@@ -1,4 +1,5 @@
 import { CONTACT_EMAIL, VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from '$env/static/private';
+import { PUBLIC_VITE_APP_NAME } from '$env/static/public';
 import dexie from '$lib/dexie';
 import { type RequestEvent } from '@sveltejs/kit';
 import webpush, { WebPushError } from 'web-push';
@@ -42,7 +43,10 @@ export const POST = async ({ params, request }: RequestEvent) => {
         try {
             await webpush.sendNotification(
                 subscription.subscription,
-                JSON.stringify(body.message)
+                JSON.stringify({
+                    title: PUBLIC_VITE_APP_NAME,
+                    message: body.message,
+                })
             );
 
             return new Response(JSON.stringify({ success: true }), {
