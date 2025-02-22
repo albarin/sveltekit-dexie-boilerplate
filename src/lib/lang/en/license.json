@@ -10,5 +10,6 @@
   "trial.button": "Upgrade now!",
   "valid.label": "Premium",
   "valid.content": "You have {{days}} days left of premium license.",
-  "valid.button": "Renew it now!"
+  "valid.button": "Renew it now!",
+  "premium.label": "You are a premium user."
 }

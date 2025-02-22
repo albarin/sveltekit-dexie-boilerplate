@@ -10,5 +10,6 @@
   "trial.button": "Pásate a premium",
   "valid.label": "Premium",
   "valid.content": "¡Te quedan {{days}} días de premium!",
-  "valid.button": "¡Renuévala!"
+  "valid.button": "¡Renuévala!",
+  "premium.label": "Eres un usuario premium."
 }

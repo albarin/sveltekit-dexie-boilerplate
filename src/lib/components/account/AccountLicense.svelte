@@ -68,6 +68,13 @@
 				color: 'text-emerald-600 border-emerald-600 bg-emerald-50'
 			};
 		}
+
+		if ($user.license.type === 'prod' && $user.license.status === 'ok') {
+			return {
+				content: $t('license.premium.label'),
+				color: 'text-emerald-600 border-emerald-600 bg-emerald-50'
+			};
+		}
 	});
 </script>
 
@@ -78,14 +85,16 @@
 				<Alert.Title class="font-semibold text-lg">{license?.label}</Alert.Title>
 				<Alert.Description class="flex flex-col gap-4 items-start">
 					{license?.content}
-					<Button
-						class={`text-white ${license?.button.color}`}
-						size="sm"
-						onclick={license?.button?.action}
-						title={license?.button?.label}
-					>
-						{license?.button?.label}
-					</Button>
+					{#if license?.button}
+						<Button
+							class={`text-white ${license?.button.color}`}
+							size="sm"
+							onclick={license?.button?.action}
+							title={license?.button?.label}
+						>
+							{license?.button?.label}
+						</Button>
+					{/if}
 				</Alert.Description>
 			</Alert.Root>
 		</Section.Content>
