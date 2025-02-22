@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { Notification } from '$lib/db';
+	import { Notification } from '$lib/db/models/Notification';
+
+	const notificationRepo = page.data.notificationRepository;
 
 	async function test() {
-		Notification.create(new Date().toUTCString());
+		notificationRepo.create(new Notification(new Date().toUTCString()));
 	}
 </script>
 

@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { Separator } from '$lib/components/ui/separator';
-	import { Notification } from '$lib/db';
+	import type { Notification } from '$lib/db/models/Notification';
 	import { t } from '$lib/translations';
 	import { X } from 'lucide-svelte';
+
+	const notificationRepo = page.data.notificationRepository;
 
 	let { notifications }: { notifications: Notification[] } = $props();
 </script>
@@ -13,14 +16,14 @@
 			<button
 				class="w-full text-sm text-left"
 				title={$t('header.notifications.notification.mark_as_read')}
-				onclick={() => n.markAsRead()}
+				onclick={() => notificationRepo.markAsRead(n?.id)}
 			>
 				{n.message}
 			</button>
 			<button
 				class="px-4 py-3"
 				title={$t('header.notifications.notification.delete')}
-				onclick={() => n.delete()}
+				onclick={() => notificationRepo.delete(n?.id)}
 			>
 				<X size="15" />
 			</button>

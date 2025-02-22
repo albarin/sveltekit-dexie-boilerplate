@@ -1,14 +1,18 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { PUBLIC_DB_NAME } from '$env/static/public';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Section from '$lib/components/ui/section';
 	import { format } from '$lib/date';
-	import { Setting, db } from '$lib/db';
+	import { db } from '$lib/db';
+	import type { Setting } from '$lib/db/models/Setting';
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 
-	let backup = liveQuery(() => Setting.getByKey('last_backup'));
-	let language = liveQuery(() => Setting.getByKey('language'));
+	const settingRepo = page.data.settingRepository;
+
+	let backup = liveQuery(() => settingRepo.getByKey('last_backup'));
+	let language = liveQuery(() => settingRepo.getByKey('language'));
 
 	const download = async () => {
 		const tablesData = await Promise.all(
@@ -30,7 +34,7 @@
 		document.body.removeChild(link);
 		URL.revokeObjectURL(url);
 
-		Setting.update({
+		settingRepo.update({
 			...$backup,
 			key: 'last_backup',
 			value: new Date().toISOString()

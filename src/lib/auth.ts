@@ -10,5 +10,5 @@ export const logout = async () => {
 };
 
 export const inSync = (syncState: SyncState) => {
-  return syncState.phase === 'in-sync' || syncState.phase === 'offline';
+  return syncState.phase === 'in-sync' || syncState.phase === 'offline' || syncState.phase === 'initial';
 }

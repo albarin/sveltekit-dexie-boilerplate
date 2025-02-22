@@ -1,14 +1,16 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { Notification } from '$lib/db';
 	import { t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 	import { Bell } from 'lucide-svelte';
 	import NotificationsPanel from './Panel.svelte';
 	import NotificationDot from './RedDot.svelte';
 
+	const notificationRepo = page.data.notificationRepository;
+
 	let open = $state(false);
-	let notifications = liveQuery(() => Notification.all());
+	let notifications = liveQuery(() => notificationRepo.all());
 
 	const unreadCount = $derived($notifications?.filter((n) => !n.read).length);
 

@@ -1,4 +1,7 @@
-import { Setting } from '$lib/db';
+import { browser } from '$app/environment';
+import { DB } from '$lib/db';
+import { NotificationRepository } from '$lib/db/repositories/NotificationRepository';
+import { SettingRepository } from '$lib/db/repositories/SettingRepository';
 import { getSubscription } from '$lib/notifications';
 import { browserLocale, loadTranslations } from '$lib/translations';
 import { detectSWUpdate } from '$lib/updates';
@@ -7,27 +10,36 @@ import type { Load } from '@sveltejs/kit';
 export const ssr = false;
 
 export const load: Load = async ({ url }) => {
-  const { pathname } = url;
+    const { pathname } = url;
 
-  const lang = await language();
-  await loadTranslations(lang, pathname);
+    let settingRepository = null;
+    let notificationRepository = null;
+    if (browser) {
+        const db = new DB();
+        settingRepository = new SettingRepository(db);
+        notificationRepository = new NotificationRepository(db);
+        const lang = await language(settingRepository);
+        await loadTranslations(lang, pathname);
+    }
 
-  const serviceWorker = await detectSWUpdate();
-  const subscription = await getSubscription();
+    const serviceWorker = await detectSWUpdate();
+    const subscription = await getSubscription();
 
-  return {
-    subscription,
-    serviceWorker,
-    newVersionAvailable: !!serviceWorker
-  };
+    return {
+        subscription,
+        serviceWorker,
+        newVersionAvailable: !!serviceWorker,
+        settingRepository,
+        notificationRepository,
+    };
 }
 
-async function language() {
-  const userLanguage = await Setting.getByKey('language');
+async function language(settingRepository: SettingRepository) {
+    const userLanguage = await settingRepository.getByKey('language');
 
-  if (userLanguage) {
-    return userLanguage.value.toString();
-  }
+    if (userLanguage) {
+        return userLanguage.value.toString();
+    }
 
-  return browserLocale;
+    return browserLocale;
 }

@@ -1,14 +1,19 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
+	import { page } from '$app/state';
 	import * as Section from '$lib/components/ui/section';
 	import * as Select from '$lib/components/ui/select';
-	import { Setting } from '$lib/db';
+	import type { Setting } from '$lib/db/models/Setting';
 	import { browserLocale, t } from '$lib/translations';
 	import { liveQuery } from 'dexie';
 
-	let language = liveQuery(() => Setting.getByKey('language'));
+	const settingRepo = page.data.settingRepository;
 
+	let language = liveQuery(() => settingRepo.getByKey('language'));
 	let selectedLanguage = $state($language?.value || browserLocale);
+	$effect(() => {
+		selectedLanguage = $language?.value || browserLocale;
+	});
 
 	const languages = [
 		{ value: 'es', label: 'Español' },
@@ -23,7 +28,7 @@
 			return;
 		}
 
-		Setting.update({
+		settingRepo.update({
 			...$language,
 			key: 'language',
 			value

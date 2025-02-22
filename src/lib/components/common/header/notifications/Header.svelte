@@ -1,21 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
-	import type { Notification } from '$lib/db';
 	import { db } from '$lib/db';
+	import type { Notification } from '$lib/db/models/Notification';
 	import { t } from '$lib/translations';
 	import { MailCheck, Trash } from 'lucide-svelte';
 
-	const markAllAsRead = async () => {
-		await db.notifications.bulkUpdate(
-			notifications.map((n) => ({ key: n.id, changes: { read: true } }))
-		);
-	};
-
-	const deleteAll = async () => {
-		await db.notifications.clear();
-	};
+	const notificationRepo = page.data.notificationRepository;
 
 	let { notifications, unreadCount }: { notifications: Notification[]; unreadCount: number } =
 		$props();
@@ -39,7 +32,7 @@
 						variant="ghost"
 						class=""
 						title={$t('header.notifications.header.button.mark_all_as_read')}
-						onclick={markAllAsRead}
+						onclick={() => notificationRepo.markAllAsRead(notifications)}
 					>
 						<MailCheck size="15" />
 					</Button>
@@ -49,7 +42,7 @@
 					size="icon"
 					variant="ghost"
 					title={$t('header.notifications.header.button.delete_all')}
-					onclick={deleteAll}
+					onclick={() => notificationRepo.deleteAll(notificationRepo)}
 				>
 					<Trash size="15" />
 				</Button>
