@@ -83,7 +83,7 @@
 		<Section.Content>
 			<Alert.Root class={`px-5 pt-4 pb-5 text-sm ${license?.color}`}>
 				<Alert.Title class="font-semibold text-lg">{license?.label}</Alert.Title>
-				<Alert.Description class="flex flex-col gap-4 items-start">
+				<Alert.Description class="flex flex-col gap-4 items-start text-pretty">
 					{license?.content}
 					{#if license?.button}
 						<Button

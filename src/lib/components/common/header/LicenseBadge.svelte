@@ -78,7 +78,7 @@
 				{license?.label}
 			</Badge>
 		</HoverCard.Trigger>
-		<HoverCard.Content class="text-sm text-center space-y-4">
+		<HoverCard.Content class="text-sm text-center space-y-4 text-pretty">
 			<p>{license?.content}</p>
 			<Button
 				class={`text-white ${license?.button.color}`}
