@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_VITE_APP_NAME } from '$env/static/public';
 	import Account from '$lib/components/account/Account.svelte';
 	import UpdateDialog from '$lib/components/common/UpdateDialog.svelte';
 	import Header from '$lib/components/common/header/Header.svelte';
@@ -12,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Sveltekit Dexie Boilerplate</title>
+	<title>{PUBLIC_VITE_APP_NAME}</title>
 </svelte:head>
 
 <ModeWatcher />
@@ -31,7 +32,6 @@
 
 <Login />
 <OTP />
-
 
 <Account />
 <Preferences />
