@@ -1,4 +1,6 @@
-export async function unsubscribe(): Promise<boolean> {
+import type { UserLogin } from "dexie-cloud-addon";
+
+export async function unsubscribe(user: UserLogin): Promise<boolean> {
   if (!('serviceWorker' in navigator)) {
     return false;
   }
@@ -20,6 +22,7 @@ export async function unsubscribe(): Promise<boolean> {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.accessToken}`,
       },
     });
 
@@ -34,7 +37,7 @@ export async function unsubscribe(): Promise<boolean> {
   }
 }
 
-export async function subscribe(user: string | undefined): Promise<PushSubscription | null> {
+export async function subscribe(user: UserLogin): Promise<PushSubscription | null> {
   if (!('serviceWorker' in navigator)) {
     return null;
   }
@@ -44,7 +47,7 @@ export async function subscribe(user: string | undefined): Promise<PushSubscript
     return null;
   }
 
-  const vapidKey = await getVapidKey();
+  const vapidKey = await getVapidKey(user);
 
   const registration = await navigator.serviceWorker.ready;
   if (!registration) {
@@ -61,10 +64,11 @@ export async function subscribe(user: string | undefined): Promise<PushSubscript
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.accessToken}`,
       },
       body: JSON.stringify({
         id: JSON.parse(JSON.stringify(subscription)).keys.p256dh,
-        user: user || '',
+        user: user.email || '',
         subscription,
       }),
     });
@@ -97,9 +101,15 @@ export async function getSubscription(): Promise<PushSubscription | null> {
   return subscription;
 }
 
-async function getVapidKey(): Promise<string> {
+async function getVapidKey(user: UserLogin): Promise<string> {
   try {
-    const res = await fetch('/api/vapid-key');
+    const res = await fetch('/api/vapid-key', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.accessToken}`,
+      }
+    });
 
     if (!res.ok) {
       console.error(`Failed to fetch vapid key, status: ${res.status}`);

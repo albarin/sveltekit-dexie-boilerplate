@@ -77,3 +77,8 @@ export const closeSettings = () => {
 	page.url.searchParams.delete('settings');
 	goto(page.url, { invalidateAll: true });
 }
+
+export const getBearerToken = (request: Request): string | undefined => {
+	const authHeader = request.headers.get('Authorization');
+	return authHeader?.split('Bearer ')[1];
+}

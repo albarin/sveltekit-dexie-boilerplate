@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { DB } from '$lib/db';
+import { db, DB } from '$lib/db';
 import { NotificationRepository } from '$lib/db/repositories/NotificationRepository';
 import { SettingRepository } from '$lib/db/repositories/SettingRepository';
 import { getSubscription } from '$lib/notifications';
@@ -15,7 +15,6 @@ export const load: Load = async ({ url }) => {
     let settingRepository = null;
     let notificationRepository = null;
     if (browser) {
-        const db = new DB();
         settingRepository = new SettingRepository(db);
         notificationRepository = new NotificationRepository(db);
         const lang = await language(settingRepository);

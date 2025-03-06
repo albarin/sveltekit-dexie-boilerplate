@@ -1,12 +1,18 @@
 import { CONTACT_EMAIL, VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from '$env/static/private';
 import { PUBLIC_VITE_APP_NAME } from '$env/static/public';
 import dexie from '$lib/dexie';
+import { getBearerToken } from '$lib/utils';
 import { type RequestEvent } from '@sveltejs/kit';
 import webpush, { WebPushError } from 'web-push';
 
 webpush.setVapidDetails(`mailto:${CONTACT_EMAIL}`, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 
 export const POST = async ({ params, request }: RequestEvent) => {
+    const token = getBearerToken(request)
+    if (!token) {
+        return new Response(null, { status: 401 });
+    }
+
     const user = params?.user;
     if (!user) {
         return new Response(JSON.stringify({ error: 'User is required' }), {
@@ -28,9 +34,9 @@ export const POST = async ({ params, request }: RequestEvent) => {
             });
         }
 
-        dexie.createNotification(user, body.message);
+        dexie.createNotification(user, body.message, token);
 
-        const subscription = await dexie.getSubscription(user);
+        const subscription = await dexie.getSubscription(user, token);
         if (!subscription) {
             return new Response(JSON.stringify({ error: 'No subscription found' }), {
                 status: 404,
@@ -59,7 +65,7 @@ export const POST = async ({ params, request }: RequestEvent) => {
             console.error('Failed to send notification:', err);
             if ((err as WebPushError).statusCode === 410) {
                 console.error(`Subscription expired, deleting subscription: ${subscription.id}`);
-                await dexie.deleteSubscription(subscription.id);
+                await dexie.deleteSubscription(subscription.id, token);
             }
             return new Response(JSON.stringify({ error: 'Failed to send notification' }), {
                 status: 500,

@@ -1,44 +1,7 @@
-import { DEXIE_CLIENT_ID, DEXIE_CLIENT_SECRET, DEXIE_CLOUD_URL } from "$env/static/private";
+import { DEXIE_CLOUD_URL } from "$env/static/private";
 import type { PushSubscription } from "web-push";
 
-const getToken = async () => {
-  try {
-    const response = await fetch(`${DEXIE_CLOUD_URL}/token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        grant_type: 'client_credentials',
-        scopes: [
-          'GLOBAL_READ',
-          'GLOBAL_WRITE',
-          'ACCESS_DB',
-        ],
-        client_id: DEXIE_CLIENT_ID,
-        client_secret: DEXIE_CLIENT_SECRET,
-      }),
-    })
-
-    if (!response.ok) {
-      console.error(`Failed to get token, status: ${response.status}`);
-      return null;
-    }
-
-    const token = await response.json();
-    return token.accessToken;
-  } catch (error) {
-    console.error(`Exception while getting token: ${error}`);
-    return null;
-  }
-}
-
-const getAllSubscriptions = async () => {
-  const token = await getToken();
-  if (!token) {
-    return [];
-  }
-
+const getAllSubscriptions = async (token: string) => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions`, {
       method: 'GET',
@@ -60,12 +23,7 @@ const getAllSubscriptions = async () => {
   }
 }
 
-const getSubscription = async (user: string): Promise<PushSubscription | null> => {
-  const token = await getToken();
-  if (!token) {
-    return null;
-  }
-
+const getSubscription = async (user: string, token: string): Promise<PushSubscription | null> => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions?user=${user}`, {
       method: 'GET',
@@ -93,12 +51,7 @@ const getSubscription = async (user: string): Promise<PushSubscription | null> =
   }
 };
 
-const createSubscription = async (subscription: PushSubscription) => {
-  const token = await getToken();
-  if (!token) {
-    return null;
-  }
-
+const createSubscription = async (subscription: PushSubscription, token: string) => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions`, {
       method: 'POST',
@@ -121,12 +74,7 @@ const createSubscription = async (subscription: PushSubscription) => {
   }
 }
 
-const deleteSubscription = async (id: string) => {
-  const token = await getToken();
-  if (!token) {
-    return null;
-  }
-
+const deleteSubscription = async (id: string, token: string) => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions/${id}`, {
       method: 'DELETE',
@@ -148,12 +96,7 @@ const deleteSubscription = async (id: string) => {
   }
 }
 
-const createNotification = async (user: string, message: string) => {
-  const token = await getToken();
-  if (!token) {
-    return null;
-  }
-
+const createNotification = async (user: string, message: string, token: string) => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/all/notifications`, {
       method: 'POST',

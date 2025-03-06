@@ -13,14 +13,14 @@
 	let user = db.cloud.currentUser;
 	let checked = $state(!!page.data.subscription);
 
-	const handleChange = async (newValue: boolean) => {
+	const handleChange = async () => {
 		if (checked) {
-			const subscription = await subscribe($user.email);
+			const subscription = await subscribe($user);
 			if (!subscription) {
 				checked = false;
 			}
 		} else {
-			await unsubscribe();
+			await unsubscribe($user);
 		}
 
 		invalidateAll();
