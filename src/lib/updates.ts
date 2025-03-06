@@ -1,5 +1,8 @@
 export async function detectSWUpdate(): Promise<ServiceWorker | undefined> {
   const registration = await navigator.serviceWorker.ready;
+  if (!registration) {
+    return undefined;
+  }
 
   if (registration?.waiting) {
     return registration.waiting;

@@ -4,6 +4,10 @@ export async function unsubscribe(): Promise<boolean> {
   }
 
   const registration = await navigator.serviceWorker.ready;
+  if (!registration) {
+    return false;
+  }
+
   const subscription = await registration.pushManager.getSubscription();
   if (!subscription) {
     return false;
@@ -43,6 +47,10 @@ export async function subscribe(user: string | undefined): Promise<PushSubscript
   const vapidKey = await getVapidKey();
 
   const registration = await navigator.serviceWorker.ready;
+  if (!registration) {
+    return null;
+  }
+
   const subscription = await registration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: vapidKey
@@ -80,6 +88,10 @@ export async function getSubscription(): Promise<PushSubscription | null> {
   }
 
   const registration = await navigator.serviceWorker.ready;
+  if (!registration) {
+    return null;
+  }
+
   const subscription = await registration.pushManager.getSubscription();
 
   return subscription;
