@@ -6,7 +6,7 @@
 	const notificationRepo = page.data.notificationRepository;
 
 	async function test() {
-		notificationRepo.create(new Notification(new Date().toUTCString()));
+		await notificationRepo.create(new Notification(new Date().toUTCString()));
 	}
 </script>
 

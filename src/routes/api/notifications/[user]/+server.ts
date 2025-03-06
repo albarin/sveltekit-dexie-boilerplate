@@ -36,7 +36,7 @@ export const POST = async ({ params, request }: RequestEvent) => {
 
         dexie.createNotification(user, body.message, token);
 
-        const subscription = await dexie.getSubscription(user, token);
+        const subscription = await dexie.getSubscriptionFromAll(user, token);
         if (!subscription) {
             return new Response(JSON.stringify({ error: 'No subscription found' }), {
                 status: 404,

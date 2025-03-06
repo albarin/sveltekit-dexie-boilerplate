@@ -1,4 +1,4 @@
-import { DEXIE_CLOUD_URL } from "$env/static/private";
+import { DEXIE_CLOUD_URL, ORIGIN } from "$env/static/private";
 import type { PushSubscription } from "web-push";
 
 const getAllSubscriptions = async (token: string) => {
@@ -8,6 +8,7 @@ const getAllSubscriptions = async (token: string) => {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        'Origin': ORIGIN,
       },
     });
 
@@ -23,13 +24,14 @@ const getAllSubscriptions = async (token: string) => {
   }
 }
 
-const getSubscription = async (user: string, token: string): Promise<PushSubscription | null> => {
+const getSubscription = async (user: string, token: string, source: string = 'my'): Promise<PushSubscription | null> => {
   try {
-    const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions?user=${user}`, {
+    const response = await fetch(`${DEXIE_CLOUD_URL}/${source}/subscriptions?user=${user}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        'Origin': ORIGIN,
       },
     });
 
@@ -51,6 +53,10 @@ const getSubscription = async (user: string, token: string): Promise<PushSubscri
   }
 };
 
+const getSubscriptionFromAll = async (user: string, token: string): Promise<PushSubscription | null> => {
+  return getSubscription(user, token, 'all');
+}
+
 const createSubscription = async (subscription: PushSubscription, token: string) => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions`, {
@@ -58,6 +64,7 @@ const createSubscription = async (subscription: PushSubscription, token: string)
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        'Origin': ORIGIN,
       },
       body: JSON.stringify(subscription),
     });
@@ -81,6 +88,7 @@ const deleteSubscription = async (id: string, token: string) => {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        'Origin': ORIGIN,
       },
     });
 
@@ -103,6 +111,7 @@ const createNotification = async (user: string, message: string, token: string) 
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        'Origin': ORIGIN,
       },
       body: JSON.stringify({
         message,
@@ -130,6 +139,7 @@ const createNotification = async (user: string, message: string, token: string) 
 
 export default {
   getSubscription,
+  getSubscriptionFromAll,
   getAllSubscriptions,
   createSubscription,
   deleteSubscription,
