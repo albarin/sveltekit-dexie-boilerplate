@@ -16,6 +16,7 @@ export class DB extends Dexie {
         this.version(1).stores({
             settings: '@id, key, created_at, updated_at',
             notifications: '@id, read, created_at',
+            subscriptions: '@id'
         });
 
         this.settings.mapToClass(Setting);
