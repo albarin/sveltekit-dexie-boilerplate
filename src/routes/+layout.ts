@@ -24,6 +24,11 @@ export const load: Load = async ({ url }) => {
     const serviceWorker = await detectSWUpdate();
     const subscription = await getSubscription();
 
+    const dbSubscriptions = await db.subscriptions.toArray();
+    if (dbSubscriptions.length === 0 && subscription) {
+        await subscription?.unsubscribe();
+    }
+
     return {
         subscription,
         serviceWorker,

@@ -7,6 +7,7 @@ import { Notification } from './db/models/Notification';
 export class DB extends Dexie {
     settings!: Table<Setting>;
     notifications!: Table<Notification>;
+    subscriptions!: Table<any>;
 
     backupTables = ['settings', 'notifications'];
 
