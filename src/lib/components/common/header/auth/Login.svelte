@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SubmitOnEnter from '$lib/components/SubmitOnEnter.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Input } from '$lib/components/ui/input';
@@ -17,7 +18,14 @@
 			email = '';
 		}
 	});
+
+	const submit = () => {
+		$ui?.onSubmit({ email });
+		loggingIn = true;
+	};
 </script>
+
+<SubmitOnEnter action={submit} />
 
 <Dialog.Header>
 	<Dialog.Title>{$t('header.login.title')}</Dialog.Title>
@@ -36,10 +44,7 @@
 	<Dialog.Footer>
 		<Button
 			type="submit"
-			onclick={() => {
-				$ui?.onSubmit({ email });
-				loggingIn = true;
-			}}
+			onclick={submit}
 			disabled={!isEmailValid(email)}
 			title={$t('header.login.submit')}
 		>
