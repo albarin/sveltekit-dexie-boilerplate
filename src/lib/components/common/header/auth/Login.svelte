@@ -8,43 +8,42 @@
 
 	let ui = db.cloud.userInteraction;
 
+	let { loggingIn = $bindable() }: { loggingIn: boolean } = $props();
+
 	let email = $state('');
-	let open = $state($ui?.type === 'email');
 
 	$effect(() => {
-		open = $ui?.type === 'email';
+		if (!loggingIn) {
+			email = '';
+		}
 	});
 </script>
 
-<Dialog.Root bind:open>
-	<Dialog.Content role="dialog" class="dialog sm:max-w-[425px]">
-		<Dialog.Header>
-			<Dialog.Title>{$t('header.login.title')}</Dialog.Title>
-			<Dialog.Description>
-				{$t('header.login.description')}
-			</Dialog.Description>
-		</Dialog.Header>
+<Dialog.Header>
+	<Dialog.Title>{$t('header.login.title')}</Dialog.Title>
+	<Dialog.Description>
+		{$t('header.login.description')}
+	</Dialog.Description>
+</Dialog.Header>
 
-		<form class="space-y-4">
-			<div class="flex flex-col gap-2">
-				<Input bind:value={email} type="email" placeholder="my@email.com" />
-				{#if $ui?.alerts && $ui?.alerts?.length > 0 && email.length > 0}
-					<span class="text-sm text-red-400">{$ui.alerts[0].message}</span>
-				{/if}
-			</div>
-			<Dialog.Footer>
-				<Button
-					type="submit"
-					onclick={() => {
-						$ui?.onSubmit({ email });
-						email = '';
-					}}
-					disabled={!isEmailValid(email)}
-					title={$t('header.login.submit')}
-				>
-					{$t('header.login.submit')}
-				</Button>
-			</Dialog.Footer>
-		</form>
-	</Dialog.Content>
-</Dialog.Root>
+<form class={['space-y-4', { 'pointer-events-none': loggingIn }]}>
+	<div class="flex flex-col gap-2">
+		<Input bind:value={email} type="email" placeholder="my@email.com" />
+		{#if $ui?.alerts && $ui?.alerts?.length > 0 && email.length > 0}
+			<span class="text-sm text-red-400">{$ui.alerts[0].message}</span>
+		{/if}
+	</div>
+	<Dialog.Footer>
+		<Button
+			type="submit"
+			onclick={() => {
+				$ui?.onSubmit({ email });
+				loggingIn = true;
+			}}
+			disabled={!isEmailValid(email)}
+			title={$t('header.login.submit')}
+		>
+			{$t('header.login.submit')}
+		</Button>
+	</Dialog.Footer>
+</form>

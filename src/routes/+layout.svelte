@@ -8,6 +8,7 @@
 	import Preferences from '$lib/components/preferences/Preferences.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
+	import LoginFlowDialog from '$lib/components/common/header/auth/LoginFlowDialog.svelte';
 
 	let { children, data } = $props();
 </script>
@@ -30,8 +31,7 @@
 	</div>
 </div>
 
-<Login />
-<OTP />
+<LoginFlowDialog />
 
 <Account />
 <Preferences />
