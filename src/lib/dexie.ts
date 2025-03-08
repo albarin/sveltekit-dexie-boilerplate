@@ -24,7 +24,7 @@ const getAllSubscriptions = async (token: string) => {
   }
 }
 
-const getSubscription = async (user: string, token: string, source: string = 'my'): Promise<PushSubscription | null> => {
+const getSubscriptions = async (user: string, token: string, source: string = 'my'): Promise<PushSubscription | null> => {
   try {
     const response = await fetch(`${DEXIE_CLOUD_URL}/${source}/subscriptions?user=${user}`, {
       method: 'GET',
@@ -45,7 +45,7 @@ const getSubscription = async (user: string, token: string, source: string = 'my
       return null;
     }
 
-    return data[0];
+    return data;
   }
   catch (error) {
     console.error(`Exception while getting subscription: ${error}`);
@@ -53,8 +53,8 @@ const getSubscription = async (user: string, token: string, source: string = 'my
   }
 };
 
-const getSubscriptionFromAll = async (user: string, token: string): Promise<PushSubscription | null> => {
-  return getSubscription(user, token, 'all');
+const getSubscriptionsFromAll = async (user: string, token: string): Promise<PushSubscription | null> => {
+  return getSubscriptions(user, token, 'all');
 }
 
 const createSubscription = async (subscription: PushSubscription, token: string) => {
@@ -70,6 +70,7 @@ const createSubscription = async (subscription: PushSubscription, token: string)
     });
 
     if (!response.ok) {
+      console.error(await response.text());
       console.error(`Failed to create subscription, status: ${response.status}`);
       return null;
     }
@@ -83,7 +84,7 @@ const createSubscription = async (subscription: PushSubscription, token: string)
 
 const deleteSubscription = async (id: string, token: string) => {
   try {
-    const response = await fetch(`${DEXIE_CLOUD_URL}/my/subscriptions/${id}`, {
+    const response = await fetch(`${DEXIE_CLOUD_URL}/all/subscriptions/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -138,8 +139,8 @@ const createNotification = async (user: string, message: string, token: string) 
 }
 
 export default {
-  getSubscription,
-  getSubscriptionFromAll,
+  getSubscriptions,
+  getSubscriptionsFromAll,
   getAllSubscriptions,
   createSubscription,
   deleteSubscription,

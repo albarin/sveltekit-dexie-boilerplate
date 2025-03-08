@@ -36,8 +36,8 @@ export const POST = async ({ params, request }: RequestEvent) => {
 
         dexie.createNotification(user, body.message, token);
 
-        const subscription = await dexie.getSubscriptionFromAll(user, token);
-        if (!subscription) {
+        const subscriptions = await dexie.getSubscriptionsFromAll(user, token);
+        if (!subscriptions) {
             return new Response(JSON.stringify({ error: 'No subscription found' }), {
                 status: 404,
                 headers: {
@@ -47,15 +47,20 @@ export const POST = async ({ params, request }: RequestEvent) => {
         }
 
         try {
-            await webpush.sendNotification(
-                subscription.subscription,
-                JSON.stringify({
-                    title: PUBLIC_VITE_APP_NAME,
-                    message: body.message,
-                })
-            );
+            for (const subscription of subscriptions) {
+                await webpush.sendNotification(
+                    subscription.subscription,
+                    JSON.stringify({
+                        title: PUBLIC_VITE_APP_NAME,
+                        message: body.message,
+                    })
+                );
+            }
 
-            return new Response(JSON.stringify({ success: true }), {
+            return new Response(JSON.stringify({
+                success: true,
+                message: `Notification sent to ${subscriptions.length} subscribers`
+            }), {
                 status: 200,
                 headers: {
                     'Content-Type': 'application/json'
@@ -66,6 +71,7 @@ export const POST = async ({ params, request }: RequestEvent) => {
             if ((err as WebPushError).statusCode === 410) {
                 console.error(`Subscription expired, deleting subscription: ${subscription.id}`);
                 await dexie.deleteSubscription(subscription.id, token);
+                dexie.createNotification(user, "Your notification subscription expired, enable them again in your preferences", token);
             }
             return new Response(JSON.stringify({ error: 'Failed to send notification' }), {
                 status: 500,
