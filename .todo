@@ -1,0 +1,52 @@
+### TODO
+
+[] Installation as PWA flow
+[] Add docs
+
+---
+
+[x] Fix flickering between login and otp forms
+[x] Notifications on all browsers
+[x] Protect routes
+[x] Push messages show undefined as title
+[x] Refactor db
+[x] Bring back account and preferences urls
+[x] Notification send with the api should be sent also to inside the app
+[x] Does not work in FF (it needs to be a production build, run this command to test: npm run build && npm run preview)
+[x] Update dialog gets stuck, never finishes reloading page
+[x] Notifications endpoint auth
+[x] Navbar icons sizes
+[x] Hover en "desconectado badge" tarda mucho en aparecer
+[x] Buttons hand cursor
+[x] Update deps
+[x] Not allow notificiations for not logged users?
+[x] Create the POST /notifications/{user} endpoint that accepts a JSON with a message
+[x] Create the GET /api/subscriptions/{id}
+
+### API Endpoints
+
+#### Subscriptions
+
+    POST /api/subscriptions
+        Create a subscription for a user in the Dexie Cloud database.
+
+    GET /api/subscriptions/{id}
+        Get the specified subscription from Dexie Cloud.
+
+    DELETE /api/subscriptions/{id}
+        Delete the specified subscription from Dexie Cloud.
+
+#### Notifications
+
+    POST /api/notifications/{user}
+        Send a notification to the specified user
+
+#### Vapid key
+
+    GET /api/vapid-key
+        Gets the configured public vapid key
+
+#### Notify
+
+    POST /api/notify
+        Gets all subscriptions from Dexie Cloud and sends a "Hello, world!" message to everyone.
